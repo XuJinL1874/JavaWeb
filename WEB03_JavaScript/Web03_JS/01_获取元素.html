@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>获取元素</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				// 获取页面指定位置的元素
+				var uEle = document.getElementById("username");
+				// alert(uEle);
+				// 获取页面指定位置的内容(值)
+				var uValue = uEle.value;
+				alert(uValue);
+			}
+		</script>
+	</head>
+	<body>
+		用户名:<input type="text" name="username" id="username"/><br />
+		密码:<input type="password" name="password" />
+		
+		
+		
+		<p>
+			2.9 获取元素内容
+				获取元素
+					document.getElementById(“id名称”[如果是一个变量，不需要引号，如果是一个值，那么需要使用引号。]);
+				获取元素里面的值
+					document.getElementById(“id名称”).value;
+			2.10 javascript事件
+				表单提交事件：onsubmit
+			警告框：alert();
+			向页面指定位置写入内容：innerHTML(属性)
+			向页面写入内容：document.write(“”);
+			3.步骤分析
+			第一步：确定事件(onsubmit)并为其绑定一个函数
+			第二步：书写这个函数(获取用户输入的数据)
+			第三步：对输入的数据进行判断(非空)
+			第四步：如果输入的内容为空，给出错误提示信息(alert),不让表单提交
+			第五步：如果输入的内容合法，让表单提交。
+
+		</p>
+	</body>
+</html>
