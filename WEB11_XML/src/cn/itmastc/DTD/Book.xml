@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hello>
+    <!--无约束-->
+    <a>
+        随便写
+    </a>
+    <ccc>
+        想写啥写啥
+    </ccc>
+    <world>
+        无约束
+    </world>
+</hello>
