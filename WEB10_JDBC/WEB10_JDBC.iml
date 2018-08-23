@@ -19,5 +19,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="C3P0" level="project" />
+    <orderEntry type="library" name="DBCP" level="project" />
+    <orderEntry type="library" name="DBUtils" level="project" />
   </component>
 </module>
