@@ -17,4 +17,18 @@ public class TestMyServlet {
         my.servlet();
         my.destory();
     }
+
+    @Test
+    public void testMyServlet1() {
+        try {
+            String className = "cn.itmastc.servlet.MyServletImpl";
+            Class clazz = Class.forName(className);
+            MyServletImpl my = (MyServletImpl) clazz.newInstance();
+            my.init();
+            my.servlet();
+            my.destory();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
