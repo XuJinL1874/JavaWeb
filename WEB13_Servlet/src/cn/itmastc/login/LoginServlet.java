@@ -5,6 +5,7 @@ import cn.itmastc.utils.DataSourceUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,17 @@ import java.sql.SQLException;
  * @Modified By:
  */
 public class LoginServlet extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        // 在ServletContext域中存一个数据
+        int count = 0;
+        this.getServletContext().setAttribute("count", count);
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // username=zhangsan&password=123
         // 1.获得用户名和密码
         String username = request.getParameter("username");
@@ -38,8 +48,13 @@ public class LoginServlet extends HttpServlet {
 
         // 3.根据显示的结果给用户不同显示信息
         if (user != null) {
+            // 从ServletContext中取出count进行++运算
+            ServletContext context = this.getServletContext();
+            Integer count = (Integer) context.getAttribute("count");
+            count++;
             // 用户登录成功
-            response.getWriter().write(user.toString());
+            response.getWriter().write(user.toString() + "---your are success login person :" + count);
+            context.setAttribute("count", count);
         } else {
             // 用户登录失败
             response.getWriter().write("sorry your username or password wrong!!!");
