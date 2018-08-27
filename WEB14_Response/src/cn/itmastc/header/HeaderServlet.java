@@ -20,7 +20,7 @@ public class HeaderServlet extends HttpServlet {
         /**
          * addHeader,setHeader
          *      addHeader相同不会覆盖
-         *      serHeader相同会覆盖
+         *      setHeader相同会覆盖
          */
         Date date = new Date();
         // 设置响应头
