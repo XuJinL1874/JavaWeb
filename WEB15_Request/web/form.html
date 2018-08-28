@@ -5,9 +5,19 @@
     <title>form</title>
 </head>
 <body>
+    <a href="/WEB15_Request/referer">访问headerServlet资源</a>
     <form action="/WEB15_Request/line" method="get">
         <input type="text" name="username"><br>
         <input type="password" name="password"><br>
+        <input type="submit" value="提交"><br>
+    </form>
+    <hr>
+    <form action="/WEB15_Request/content" method="post">
+        <input type="text" name="username"><br>
+        <input type="password" name="password"><br>
+        <input type="checkbox" name="hobby" value="zq">足球
+        <input type="checkbox" name="hobby" value="pq">排球
+        <input type="checkbox" name="hobby" value="ppq">乒乓球<br>
         <input type="submit" value="提交"><br>
     </form>
 </body>

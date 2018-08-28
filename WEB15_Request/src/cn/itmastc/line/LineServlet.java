@@ -26,7 +26,7 @@ public class LineServlet extends HttpServlet {
         StringBuffer requestURL = request.getRequestURL();
         System.out.println("uri:" + requestURI);
         System.out.println("url:" + requestURL);
-        // 获得web应用的名称
+        // 获得web应用的名称(*****)
         String contextPath = request.getContextPath();
         System.out.println("web应用:"+contextPath);
         // 地址后的参数的字符串
