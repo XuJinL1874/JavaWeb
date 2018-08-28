@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="WEB15_Request" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="lib" module-name="WEB15_Request" />
+          <element id="library" level="project" name="lib" />
+        </element>
       </element>
     </root>
   </artifact>
