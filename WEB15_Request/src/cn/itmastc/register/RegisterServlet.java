@@ -64,7 +64,8 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        //4、认为注册成功跳转到登录页面
+        // 4、认为注册成功跳转到登录页面
+        // request.getContextPath()动态获取web应用名称
         response.sendRedirect(request.getContextPath()+"/login.jsp");
 
 

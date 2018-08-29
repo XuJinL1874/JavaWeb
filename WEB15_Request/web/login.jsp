@@ -54,7 +54,7 @@ font {
 					style="width: 440px; border: 1px solid #E7E7E7; padding: 20px 0 20px 30px; border-radius: 5px; margin-top: 60px; background: #fff;">
 					<font>会员登录</font>USER LOGIN
 					<div><%=request.getAttribute("loginInfo")==null?"":request.getAttribute("loginInfo")%></div>
-					<form class="form-horizontal" action="/WEB15/login" method="post">
+					<form class="form-horizontal" action="/WEB15_Request/login" method="post">
 						<div class="form-group">
 							<label for="username" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-6">
