@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet(name = "LastAccessTimeServlet", urlPatterns = {"/last"})
 public class LastAccessTimeServlet extends HttpServlet {
 
     @Override
@@ -22,7 +24,7 @@ public class LastAccessTimeServlet extends HttpServlet {
         String currentTime = format.format(date);
 
         //1、创建Cookie 记录当前的最新的访问时间
-        Cookie cookie = new Cookie( "lastAccessTime", currentTime);
+        Cookie cookie = new Cookie("lastAccessTime",currentTime);
         cookie.setMaxAge(60*10*500);
         response.addCookie(cookie);
 
