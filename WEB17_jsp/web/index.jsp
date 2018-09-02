@@ -18,6 +18,9 @@
         /**
          * 多行注释
          */
+      /**
+       *
+       */
       int i = 0;
       System.out.println(i);
     %>
@@ -26,6 +29,9 @@
 
     <%!
         String str = "nihao china!!!";
+        public void fun() {
+          System.out.println("this is JSP!!!");
+        }
     %>
     <%=str%>
 
