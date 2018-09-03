@@ -15,6 +15,7 @@
 <body>
     <!-- 模拟域中的数据 -->
     <%
+        pageContext.setAttribute("school", "床前明月光");
         // 存储字符串
         request.setAttribute("school", "马鞍山职业技术学院");
 
@@ -48,5 +49,17 @@
         User sessionUser = (User) session.getAttribute("user");
         out.write(sessionUser.getName());
     %>
+
+    <hr>
+    <!-- 使用EL表达式获取域中的值 -->
+    ${requestScope.school}
+    ${sessionScope.user.name}
+    ${applicationScope.list[1].name}
+
+    <hr>
+    <!-- 使用el表达式 全域查找 -->
+    ${school}
+    ${user.name}
+    ${list[1].name}
 </body>
 </html>
