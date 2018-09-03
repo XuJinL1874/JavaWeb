@@ -21,5 +21,8 @@
     ${param.username}
     ${header["User-Agent"]}
     ${cookie.name.value}
+
+    <!-- 通过el表达式获得request对象 -->
+    ${pageContext.request}
 </body>
 </html>
