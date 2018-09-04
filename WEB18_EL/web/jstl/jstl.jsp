@@ -22,6 +22,24 @@
         xxxx
     </c:if>
 
+    <!-- forEach模拟
+        for(int i=0; i < 5; i++){
+            System.out.println("i");
+        }
+     -->
+    <c:forEach begin="0" end="5" var="i">
+        ${i}<br>
+    </c:forEach>
+
+    <!-- 模拟增强for productList---List<Product>
+        for(Product product : productList){
+            sout(product.getPname());
+        }
+     -->
+    <!-- items:一个集合或数组 var:代表集合中的某个元素 -->
+    <c:forEach items="${productList}" var="pro" >
+        ${pro.pname}
+    </c:forEach>
 
 </body>
 </html>
