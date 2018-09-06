@@ -15,18 +15,18 @@ import java.sql.SQLException;
 public class TransferDao {
 
 
-    public void out(Connection conn, String out, double money) throws SQLException {
+    public void out(String out, double money) throws SQLException {
 
         QueryRunner runner = new QueryRunner();
-        // Connection conn = DataSourceUtils.getCurrentConnection();
+         Connection conn = DataSourceUtils.getCurrentConnection();
         String sql = "update account set money=money-? where name=?";
         runner.update(conn, sql, money,out);
 
     }
 
-    public void in(Connection conn, String in, double money) throws SQLException {
+    public void in(String in, double money) throws SQLException {
         QueryRunner runner = new QueryRunner();
-       //  Connection conn = DataSourceUtils.getCurrentConnection();
+        Connection conn = DataSourceUtils.getCurrentConnection();
         String sql = "update account set money=money+? where name=?";
         runner.update(conn, sql, money,in);
     }

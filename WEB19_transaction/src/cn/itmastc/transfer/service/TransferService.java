@@ -2,6 +2,7 @@ package cn.itmastc.transfer.service;
 
 import cn.itmastc.transfer.dao.TransferDao;
 import cn.itmastc.utils.DataSourceUtils;
+import cn.itmastc.utils.MyDataSourceUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,34 +20,34 @@ public class TransferService {
         TransferDao dao = new TransferDao();
 
         boolean isTranferSuccess = true;
-        Connection conn = null;
+        // Connection conn = null;
         try {
 
-            //开启事务
-            conn = DataSourceUtils.getConnection();
-            conn.setAutoCommit(false);
+            // 开启事务
+            // conn = DataSourceUtils.getConnection();
+            // conn.setAutoCommit(false);
 
-            //开启事务
-           //  DataSourceUtils.startTransaction();
+            // 开启事务
+           MyDataSourceUtils.startTransaction();
 
-            //转出钱的方法
-            dao.out(conn, out,money);
+            // 转出钱的方法
+            dao.out( out,money);
             int i = 1/0;
             //转入钱的方法
-            dao.in(conn, in,money);
+            dao.in(in,money);
 
         } catch (Exception e) {
             isTranferSuccess = false;
             //回滚事务
             try {
-                conn.rollback();
+                MyDataSourceUtils.rollback();
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
             e.printStackTrace();
         } finally{
             try {
-                conn.commit();
+                MyDataSourceUtils.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
