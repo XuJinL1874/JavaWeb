@@ -38,4 +38,10 @@ public class AdminProductDao {
                 product.getShop_price(),product.getPimage(),product.getPdate(),product.getIs_hot(),
                 product.getPdesc(),product.getPflag(),product.getCid());
     }
+
+    public void delProductByPid(String pid) throws SQLException {
+        QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "delete from product where pid=?";
+        runner.update(sql, pid);
+    }
 }
