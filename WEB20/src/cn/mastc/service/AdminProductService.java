@@ -1,6 +1,7 @@
 package cn.mastc.service;
 
 import cn.mastc.dao.AdminProductDao;
+import cn.mastc.domain.Category;
 import cn.mastc.domain.Product;
 
 import java.sql.SQLException;
@@ -21,4 +22,15 @@ public class AdminProductService {
         return dao.findAllProduct();
     }
 
+    // 获得所有的类别
+    public List<Category> findAllCategory() throws SQLException {
+        AdminProductDao dao = new AdminProductDao();
+        return dao.findAllCategory();
+    }
+
+    // 添加数据
+    public void addProduct(Product product) throws SQLException {
+        AdminProductDao dao = new AdminProductDao();
+        dao.addProduct(product);
+    }
 }
