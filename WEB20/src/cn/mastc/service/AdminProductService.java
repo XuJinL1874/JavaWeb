@@ -39,4 +39,10 @@ public class AdminProductService {
         AdminProductDao dao = new AdminProductDao();
         dao.delProductByPid(pid);
     }
+
+    // 根据pid查询商品对象
+    public Product findProductByPid(String pid) throws SQLException {
+        AdminProductDao dao = new AdminProductDao();
+        return dao.findProductByPid(pid);
+    }
 }

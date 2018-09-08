@@ -4,6 +4,7 @@ import cn.mastc.domain.Category;
 import cn.mastc.domain.Product;
 import cn.mastc.utils.DataSourceUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
@@ -44,4 +45,12 @@ public class AdminProductDao {
         String sql = "delete from product where pid=?";
         runner.update(sql, pid);
     }
+
+    public Product findProductByPid(String pid) throws SQLException {
+        QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from product where pid=?";
+        Product product = runner.query(sql, new BeanHandler<Product>(Product.class), pid);
+        return product;
+    }
+
 }
