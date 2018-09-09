@@ -3,11 +3,13 @@ package cn.mastc.dao;
 import cn.mastc.domain.Category;
 import cn.mastc.domain.Product;
 import cn.mastc.utils.DataSourceUtils;
+import cn.mastc.vo.Condition;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,5 +61,29 @@ public class AdminProductDao {
         runner.update(sql,product.getPname(),product.getMarket_price(),
                 product.getShop_price(),product.getPimage(),product.getPdate(),product.getIs_hot(),
                 product.getPdesc(),product.getPflag(),product.getCid(),product.getPid());
+    }
+
+    public List<Product> findProductListByCondition(Condition condition) throws SQLException {
+        QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+        //定义一个存储实际参数的容器
+        List<String> list = new ArrayList<String>();
+        String sql = "select * from product where 1=1";
+        if(condition.getPname()!=null&&!condition.getPname().trim().equals("")){
+            sql+=" and pname like ? ";
+            list.add("%"+condition.getPname().trim()+"%");
+        }
+        if(condition.getIsHot()!=null&&!condition.getIsHot().trim().equals("")){
+            sql+=" and is_hot=? ";
+            list.add(condition.getIsHot().trim());
+        }
+        if(condition.getCid()!=null&&!condition.getCid().trim().equals("")){
+            sql+=" and cid=? ";
+            list.add(condition.getCid().trim());
+        }
+
+
+        List<Product> productList = runner.query(sql, new BeanListHandler<Product>(Product.class) , list.toArray());
+
+        return productList;
     }
 }

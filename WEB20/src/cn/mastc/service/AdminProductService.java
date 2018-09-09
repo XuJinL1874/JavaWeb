@@ -3,6 +3,7 @@ package cn.mastc.service;
 import cn.mastc.dao.AdminProductDao;
 import cn.mastc.domain.Category;
 import cn.mastc.domain.Product;
+import cn.mastc.vo.Condition;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -50,5 +51,11 @@ public class AdminProductService {
     public void updateProduct(Product product) throws SQLException {
         AdminProductDao dao = new AdminProductDao();
         dao.updateProduct(product);
+    }
+
+    // 根据条件查询商品列表
+    public List<Product> findProductListByCondition(Condition condition) throws SQLException {
+        AdminProductDao dao = new AdminProductDao();
+        return dao.findProductListByCondition(condition);
     }
 }

@@ -1,5 +1,6 @@
 package cn.mastc.web;
 
+import cn.mastc.domain.Category;
 import cn.mastc.service.AdminProductService;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @Author: X_JinL
@@ -32,6 +34,15 @@ public class AdminDelProductServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+        // 获得所有的商品的类别数据
+        List<Category> categoryList = null;
+        try {
+            categoryList = service.findAllCategory();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("categoryList", categoryList);
         response.sendRedirect(request.getContextPath()+"/adminProductList");
     }
 

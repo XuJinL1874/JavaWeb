@@ -8,6 +8,7 @@
 		  rel="stylesheet" type="text/css" />
 	<script language="javascript"
 			src="${pageContext.request.contextPath}/js/public.js"></script>
+	<script language="javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript">
         function addProduct(){
             window.location.href = "${pageContext.request.contextPath}/adminAddProductUI";
@@ -21,14 +22,34 @@
             }
         }
 
+        $(function(){
+            $("#isHot option[value='${condition.isHot}']").prop("selected",true);
+            $("#cid option[value='${condition.cid}']").prop("selected",true);
+        });
+
 	</script>
 </HEAD>
 <body>
 <br>
-<form id="Form1" name="Form1"
-	  action="${pageContext.request.contextPath}/user/list.jsp"
-	  method="post">
-	<table cellSpacing="1" cellPadding="0" width="100%" align="center"
+<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/adminSearchProductList" method="post">
+
+	商品名称：<input type="text" name="pname" value="${condition.pname }">&nbsp;&nbsp;
+	是否热门：<select id="isHot" name="isHot">
+	<option value="">不限</option>
+	<option value="0">否</option>
+	<option value="1">是</option>
+</select>&nbsp;&nbsp;
+	商品类别：<select id="cid" name="cid">
+	<option value="">不限</option>
+	<c:forEach items="${categoryList }" var="category">
+		<option value="${category.cid }">${category.cname }</option>
+	</c:forEach>
+</select>&nbsp;&nbsp;
+	<input type="submit" value="搜索">
+
+	<br/>
+
+	<table style="margin-top:10px" cellSpacing="1" cellPadding="0" width="100%" align="center"
 		   bgColor="#f5fafe" border="0">
 		<TBODY>
 		<tr>
