@@ -45,4 +45,10 @@ public class AdminProductService {
         AdminProductDao dao = new AdminProductDao();
         return dao.findProductByPid(pid);
     }
+
+    // 更新商品
+    public void updateProduct(Product product) throws SQLException {
+        AdminProductDao dao = new AdminProductDao();
+        dao.updateProduct(product);
+    }
 }
