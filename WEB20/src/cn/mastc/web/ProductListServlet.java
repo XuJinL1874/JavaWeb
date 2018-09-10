@@ -27,9 +27,15 @@ public class ProductListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ProductListService service = new ProductListService();
-        PageBean pageBean = null;
+
+        // 模拟当前是第一页
+        int currentPage = 1;
+        // 认为每页显示12条
+        int currentCount = 12;
+
+        PageBean<Product> pageBean = null;
         try {
-            pageBean = service.findPageBean();
+            pageBean = service.findPageBean(currentPage, currentCount);
         } catch (SQLException e) {
             e.printStackTrace();
         }
