@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,17 +40,19 @@ body {
 			</ol>
 		</div>
 
-		<div class="col-md-2">
-			<a href="product_info.htm"> <img src="products/1/cs10001.jpg"
-				width="170" height="170" style="display: inline-block;">
-			</a>
-			<p>
-				<a href="product_info.html" style='color: green'>冬瓜</a>
-			</p>
-			<p>
-				<font color="#FF0000">商城价：&yen;299.00</font>
-			</p>
-		</div>
+		<c:forEach items="${productList}" var="product">
+			<div class="col-md-2" style="height: 250px">
+				<a href="${pageContext.request.contextPath}/${product.pimage}">
+					<img src="products/1/cs10001.jpg" width="170" height="170" style="display: inline-block;">
+				</a>
+				<p>
+					<a href="product_info.html" style='color: green'>${product.pname}</a>
+				</p>
+				<p>
+					<font color="#FF0000">商城价：&yen;${product.shop_price}</font>
+				</p>
+			</div>
+		</c:forEach>
 
 		<div class="col-md-2">
 			<a href="product_info.htm"> <img src="products/1/cs10002.jpg"
