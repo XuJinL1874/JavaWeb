@@ -29,7 +29,11 @@ public class ProductListServlet extends HttpServlet {
         ProductListService service = new ProductListService();
 
         // 模拟当前是第一页
-        int currentPage = 1;
+        String currentPageStr = request.getParameter("currentPage");
+        if (currentPageStr == null) {
+            currentPageStr = "1";
+        }
+        int currentPage = Integer.parseInt(currentPageStr);
         // 认为每页显示12条
         int currentCount = 12;
 
