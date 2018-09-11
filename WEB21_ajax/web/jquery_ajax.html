@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        function fn1() {
+            // get异步访问
+            $.get(
+                "/WEB21_ajax/ajaxServlet2", // url地址
+                {"name": "zhangsan", "age": 22}, // 请求参数
+                function (data) { // 执行成功后的回调函数
+                    // {"name":"tom", "age":22}
+                    alert(data.name);
+                },
+                "json" // 返回data参数的类型
+            );
+        }
+        function fn2() {
+            // post异步访问
+            $.post(
+                "/WEB21_ajax/ajaxServlet2", // url地址
+                {"name": "zhangsan", "age": 22}, // 请求参数
+                function (data) { // 执行成功后的回调函数
+                    // {"name":"tom", "age":22}
+                    alert(data.name);
+                },
+                "json" // 返回data参数的类型
+            );
+        }
+        function fn3() {
+           /* 3）$.ajax( { option1:value1,option2:value2... } ); ---- 以后在掌握
+            常用的option有如下：
+            async：是否异步，默认是true代表异步
+            data：发送到服务器的参数，建议使用json格式
+            dataType：服务器端返回的数据类型，常用text和json
+            success：成功响应执行的函数，对应的类型是function类型
+            type：请求方式，POST/GET
+            url：请求服务器端地址*/
+            $.ajax({
+                url: "/WEB21_ajax/ajaxServlet2",
+                async: true,
+                type: "POST",
+                data: {"name":"lucy", "age":22},
+                success: function (data) {
+                    alert(data.name);
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+                dataType: "json"
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" value="get访问服务器端" onclick="fn1()"><span id="span1"></span>
+    <br>
+    <input type="button" value="post访问服务器端" onclick="fn2()"><span id="span2"></span>
+    <br>
+    <input type="button" value="ajax访问服务器端" onclick="fn3()"><span id="span3"></span>
+    <br>
+</body>
+</html>
