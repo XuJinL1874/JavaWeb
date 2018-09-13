@@ -9,7 +9,11 @@
     <!--<listener>
         <listener-class>cn.mastc.create.MyServletContextListener</listener-class>
     </listener>-->
-    <listener>
+    <!--<listener>
         <listener-class>cn.mastc.create.MyHttpSessionListener</listener-class>
+    </listener>-->
+    <!--监听属性变化的-->
+    <listener>
+        <listener-class>cn.mastc.attribute.MyServletContextAttributeListener</listener-class>
     </listener>
 </web-app>
