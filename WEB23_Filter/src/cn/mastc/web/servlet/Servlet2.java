@@ -10,18 +10,15 @@ import java.io.IOException;
 /**
  * @Author: X_JinL
  * @Description:
- * @Date: Created in 19:50 2018/9/17
+ * @Date: Created in 15:53 2018/9/18
  * @Modified By:
  */
-@WebServlet(name = "Servlet1", urlPatterns = {"/servlet1"})
-public class Servlet1 extends HttpServlet {
+@WebServlet(name = "Servlet2", urlPatterns = {"/servlet2"})
+public class Servlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Servlet1 running...");
-        // response.getWriter().write("Servlet1 running...");
-         request.getRequestDispatcher("/servlet2").forward(request, response);
-        // response.sendRedirect(request.getContextPath() + "/servlet2");
+        response.getWriter().write("Welcome To There...");
     }
 
     @Override

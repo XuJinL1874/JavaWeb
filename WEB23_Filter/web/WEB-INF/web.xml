@@ -9,17 +9,23 @@
         <filter>
             <filter-name>QuickFilter1</filter-name>
             <filter-class>cn.mastc.web.filter.QuickFilter1</filter-class>
+            <init-param>
+                <param-name>aaa</param-name>
+                <param-value>AAAA</param-value>
+            </init-param>
         </filter>
         <filter-mapping>
             <filter-name>QuickFilter1</filter-name>
             <url-pattern>/*</url-pattern>
+            <!--<dispatcher>REQUEST</dispatcher>-->
+            <dispatcher>FORWARD</dispatcher>
         </filter-mapping>
-        <filter>
+       <!-- <filter>
             <filter-name>QuickFilter2</filter-name>
             <filter-class>cn.mastc.web.filter.QuickFilter2</filter-class>
         </filter>
         <filter-mapping>
             <filter-name>QuickFilter2</filter-name>
             <url-pattern>/*</url-pattern>
-        </filter-mapping>
+        </filter-mapping>-->
 </web-app>
