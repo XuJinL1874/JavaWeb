@@ -19,7 +19,7 @@ import java.sql.SQLException;
  * @Date: Created in 15:12 2018/9/19
  * @Modified By:
  */
-@WebFilter(filterName = "AutoLoginFilter",urlPatterns = {"/*"})
+@WebFilter(filterName = "AutoLoginFilter")
 public class AutoLoginFilter implements Filter {
     @Override
     public void destroy() {
