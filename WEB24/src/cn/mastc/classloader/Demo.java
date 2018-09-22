@@ -19,7 +19,7 @@ public class Demo {
         // 获得classes(src)下的任何资源
         // getResource 的参数路径相对classes(src)
         String path = classLoader.getResource("jdbc.properties").getPath();
-        // classLoader.getResourceAsStream("");
+        // classLoader.getResourceAsStream(" ");
         System.out.println(path);
     }
 }
