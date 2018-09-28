@@ -23,7 +23,7 @@ public class JedisTest {
         String username = jedis.get("username");
         System.out.println(username);
 
-        // 3.存 储
+        // 3.存储
         jedis.set("addr", "shanghai");
         System.out.println(jedis.get("addr"));
     }
