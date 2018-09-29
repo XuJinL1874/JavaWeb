@@ -14,7 +14,7 @@ public class JedisTest {
     // 通过java程序访问redis数据库
 
     @Test
-    // 获得单一的jedis对象操作数据库
+    // 获得单一的jedis 对象操作数据库
     public void test1() {
         // 1.获得连接对象
         Jedis jedis = new Jedis("192.168.1.200", 6379);
