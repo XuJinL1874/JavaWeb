@@ -10,7 +10,7 @@
 
     <named-config name="oracle">
         <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql:///web_07</property>
+        <property name="jdbcUrl">jdbc:mysql:///</property>
         <property name="user">root</property>
         <property name="password">123456</property>
     </named-config>
