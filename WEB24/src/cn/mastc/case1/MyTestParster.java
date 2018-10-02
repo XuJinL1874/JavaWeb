@@ -10,7 +10,8 @@ import java.lang.reflect.Method;
  * @Modified By:
  */
 public class MyTestParster {
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException,
+            InvocationTargetException {
 
         // 获得TestDemo
         Class clazz = TestDemo.class;
