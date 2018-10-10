@@ -1,6 +1,7 @@
 package cn.mastc.service;
 
 import cn.mastc.dao.ProductDao;
+import cn.mastc.domain.Category;
 import cn.mastc.domain.Product;
 
 import java.sql.SQLException;
@@ -37,5 +38,16 @@ public class ProductService {
             e.printStackTrace();
         }
         return newProductList;
+    }
+
+    public List<Category> findAllCategory() {
+        ProductDao dao = new ProductDao();
+        List<Category> categoryList = null;
+        try {
+            categoryList = dao.findAllCategory();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categoryList;
     }
 }

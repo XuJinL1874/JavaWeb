@@ -1,5 +1,6 @@
 package cn.mastc.dao;
 
+import cn.mastc.domain.Category;
 import cn.mastc.domain.Product;
 import cn.mastc.utils.DataSourceUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -25,5 +26,11 @@ public class ProductDao {
         QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
         String sql = "select * from product order by pdate desc limit ?,?";
         return runner.query(sql, new BeanListHandler<Product>(Product.class),  0, 9);
+    }
+
+    public List<Category> findAllCategory() throws SQLException {
+        QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from category";
+        return runner.query(sql, new BeanListHandler<Category>(Category.class));
     }
 }
