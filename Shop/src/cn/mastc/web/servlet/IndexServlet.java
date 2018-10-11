@@ -32,11 +32,11 @@ public class IndexServlet extends HttpServlet {
         // 准备最新商品
         List<Product> newProductList = service.newHotProductList();
 
-        // 准备分类数据
+
+        /*// 准备分类数据
         List<Category> categoryList = service.findAllCategory();
 
-
-        request.setAttribute("categoryList", categoryList);
+        request.setAttribute("categoryList", categoryList);*/
         request.setAttribute("hotProductList", hotProductList);
         request.setAttribute("newProductList", newProductList);
 
