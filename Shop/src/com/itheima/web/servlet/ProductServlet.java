@@ -93,6 +93,9 @@ public class ProductServlet extends BaseServlet {
         // 先判断购物车中是否已包含此购物项了   判断key是否已存在
         // 如果购物车中已存在该商品----将现在买的数量与原有的数量进行相加操作
         Map<String, CartItem> cartItems = cart.getCartItems();
+
+        double newsubtotal = 0.0;
+
         if (cartItems.containsKey(pid)) {
             // 取出原有商品的数量
             CartItem cartItem = cartItems.get(pid);
@@ -101,17 +104,21 @@ public class ProductServlet extends BaseServlet {
             cartItem.setBuyNum(oldBuyNum);
             cart.setCartItems(cartItems);
             // 修改小计
-            cartItem.setSubtotal(oldBuyNum * product.getShop_price());
-
+            // 原先的商品的小计
+            double oldsubtotal = cartItem.getSubtotal();
+            // 新买的商品的小计
+            newsubtotal = buyNum * product.getShop_price();
+            cartItem.setSubtotal(oldsubtotal + newsubtotal);
         } else {
             // 如果车中没有该商品
             cart.getCartItems().put(product.getPid(), item);
+            newsubtotal = buyNum * product.getShop_price();
         }
 
 
 
         // 计算总计
-        double total = cart.getTotal() + subtotal;
+        double total = cart.getTotal() + newsubtotal;
         cart.setTotal(total);
 
         // 将车再次放回session

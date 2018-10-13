@@ -51,12 +51,12 @@
 								<th>操作</th>
 							</tr>
 
-							<c:forEach items="${cart.cartItems}" var="entry">
+							<c:forEach items="${cart.cartItems }" var="entry">
 
 								<tr class="active">
 									<td width="60" width="40%">
 										<input type="hidden" name="id" value="22">
-										<img src="${pageContext.request.contextPath}/${entry.value.product.pimage}" width="70" height="60">
+										<img src="${pageContext.request.contextPath }/${entry.value.product.pimage}" width="70" height="60">
 									</td>
 									<td width="30%">
 										<a target="_blank">${entry.value.product.pname}</a>
@@ -65,13 +65,13 @@
 										￥${entry.value.product.shop_price}
 									</td>
 									<td width="10%">
-										${entry.value.buyNum}
+											${entry.value.buyNum}
 									</td>
 									<td width="15%">
-										<span class="subtotal">￥${entry.value.subtotal}</span>
+										<span class="subtotal">￥${entry.value.subtotal }</span>
 									</td>
 									<td>
-										<a href="javascript:;" class="delete">删除</a>
+										<a href="javascript:;" onclick="delProFromCart('${entry.value.product.pid}')" class="delete">删除</a>
 									</td>
 								</tr>
 
