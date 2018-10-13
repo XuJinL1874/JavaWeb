@@ -1,9 +1,7 @@
 package com.itheima.web.servlet;
 
 import com.google.gson.Gson;
-import com.itheima.domain.Category;
-import com.itheima.domain.PageBean;
-import com.itheima.domain.Product;
+import com.itheima.domain.*;
 import com.itheima.service.ProductService;
 import com.itheima.utils.JedisPoolUtils;
 import redis.clients.jedis.Jedis;
@@ -13,11 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: X_JinL
@@ -25,6 +21,7 @@ import java.util.List;
  * @Date: Created in 14:52 2018/10/13
  * @Modified By:
  */
+@SuppressWarnings("all")
 @WebServlet(name = "ProductServlet", urlPatterns = {"/product"})
 public class ProductServlet extends BaseServlet {
     /*@Override
@@ -53,6 +50,77 @@ public class ProductServlet extends BaseServlet {
 
 
     // 模块中的功能通过方法进行区分的
+
+
+    /**
+     * 将商品添加到购物车
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+
+    public void addProductToCart(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
+        ProductService service = new ProductService();
+
+        // 获得放到购物车里的商品的pid
+        String pid = request.getParameter("pid");
+        // 获得该商品的购买数量
+        int buyNum = Integer.parseInt(request.getParameter("buyNum"));
+
+        // 获得product对象
+        Product product = service.findProductByPid(pid);
+        // 计算小计
+        double subtotal = product.getShop_price() * buyNum;
+        // 封装CartItem
+        CartItem item = new CartItem();
+        item.setBuyNum(buyNum);
+        item.setProduct(product);
+        item.setSubtotal(subtotal);
+
+        // 获得购物车----判断是否在session存在购物车
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+        }
+
+        // 将购物项放到车中----key是pid
+        // 先判断购物车中是否已包含此购物项了   判断key是否已存在
+        // 如果购物车中已存在该商品----将现在买的数量与原有的数量进行相加操作
+        Map<String, CartItem> cartItems = cart.getCartItems();
+        if (cartItems.containsKey(pid)) {
+            // 取出原有商品的数量
+            CartItem cartItem = cartItems.get(pid);
+            int oldBuyNum = cartItem.getBuyNum();
+            oldBuyNum += buyNum;
+            cartItem.setBuyNum(oldBuyNum);
+            cart.setCartItems(cartItems);
+            // 修改小计
+            cartItem.setSubtotal(oldBuyNum * product.getShop_price());
+
+        } else {
+            // 如果车中没有该商品
+            cart.getCartItems().put(product.getPid(), item);
+        }
+
+
+
+        // 计算总计
+        double total = cart.getTotal() + subtotal;
+        cart.setTotal(total);
+
+        // 将车再次放回session
+        session.setAttribute("cart", cart);
+
+        // 直接跳转到购物车页面
+        response.sendRedirect(request.getContextPath()+"/cart.jsp");
+
+    }
 
     /**
      * 显示商品类别的功能
@@ -123,7 +191,7 @@ public class ProductServlet extends BaseServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void productInfo(HttpServletRequest request, HttpServletResponse response)
+    public void productInfo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         //获得当前页
