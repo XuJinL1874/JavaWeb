@@ -33,14 +33,18 @@
     <url-pattern>/checkUsername</url-pattern>
   </servlet-mapping>
   <servlet>
-  <servlet-name>ProductServlet</servlet-name>
-  <servlet-class>com.itheima.web.servlet.ProductServlet</servlet-class>
-</servlet>
+    <description></description>
+    <display-name>PrdocutServlet</display-name>
+    <servlet-name>PrdocutServlet</servlet-name>
+    <servlet-class>com.itheima.web.servlet.ProductServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
-    <servlet-name>ProductServlet</servlet-name>
+    <servlet-name>PrdocutServlet</servlet-name>
     <url-pattern>/product</url-pattern>
   </servlet-mapping>
   <servlet>
+    <description></description>
+    <display-name>BaseServlet</display-name>
     <servlet-name>BaseServlet</servlet-name>
     <servlet-class>com.itheima.web.servlet.BaseServlet</servlet-class>
   </servlet>
