@@ -3,6 +3,7 @@ package com.itheima.web.servlet;
 import com.google.gson.Gson;
 import com.itheima.domain.*;
 import com.itheima.service.ProductService;
+import com.itheima.utils.CommonsUtils;
 import com.itheima.utils.JedisPoolUtils;
 import redis.clients.jedis.Jedis;
 
@@ -21,6 +22,7 @@ import java.util.*;
  * @Date: Created in 14:51 2018/10/14
  * @Modified By:
  */
+@SuppressWarnings("all")
 @WebServlet(name = "ProductServlet")
 public class ProductServlet extends BaseServlet {
 
@@ -44,6 +46,88 @@ public class ProductServlet extends BaseServlet {
 		doGet(request, response);
 	}
 	 */
+
+    // 提交订单
+    public void submitOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
+        // 判断用户是否已经登录,未登录代码不执行
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            // 没登录
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+
+        // 封装好一个Order对象,传递到service层
+        Order order = new Order();
+
+        //1、private String oid;//该订单的订单号
+        String oid = CommonsUtils.getUUID();
+        order.setOid(oid);
+
+        //2、private Date ordertime;//下单时间
+        order.setOrdertime(new Date());
+
+        //3、private double total;//该订单的总金额
+        //获得session中的购物车
+        Cart cart = (Cart) session.getAttribute("cart");
+        double total = cart.getTotal();
+        order.setTotal(total);
+
+        //4、private int state;//订单支付状态 1代表已付款 0代表未付款
+        order.setState(0);
+
+        //5、private String address;//收货地址
+        order.setAddress(null);
+
+        //6、private String name;//收货人
+        order.setName(null);
+
+        //7、private String telephone;//收货人电话
+        order.setTelephone(null);
+
+        //8、private User user;//该订单属于哪个用户
+        order.setUser(user);
+
+        // 9.该订单中有多少订单项  List<OrderItem> orderItems = new ArrayList<OrderItem>();
+        // 获得购物车中的购物项的集合map
+        Map<String, CartItem> cartItems = cart.getCartItems();
+        for (Map.Entry<String, CartItem> entry : cartItems.entrySet()) {
+            // 取出每一个购物项
+            CartItem cartItem = entry.getValue();
+            // 创建新的订单项
+            OrderItem orderItem = new OrderItem();
+            // 1)订单项的id private String itemid;
+            orderItem.setItemid(CommonsUtils.getUUID());
+
+            // 2)订单项内商品的购买数量 private  int count;
+            orderItem.setCount(cartItem.getBuyNum());
+
+            // 3)订单项小计 private  double subtotal;
+            orderItem.setSubtotal(cartItem.getSubtotal());
+
+            // 4)订单项内部的商品 private Product product;
+            orderItem.setProduct(cartItem.getProduct());
+
+            // 5)该订单输入哪个订单  private Order order;
+            orderItem.setOrder(order);
+
+            // 将该订单项添加到订单的订单项集合中
+            order.getOrderItems().add(orderItem);
+
+        }
+
+        // order对象封装完毕
+        // 传递数据到service层
+        ProductService service = new ProductService();
+        service.submitOrder(order);
+
+
+
+    }
 
     //清空购物车
     public void clearCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

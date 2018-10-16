@@ -3,6 +3,7 @@ package com.itheima.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.itheima.domain.Order;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -53,4 +54,11 @@ public class ProductDao {
 		return runner.query(sql, new BeanHandler<Product>(Product.class), pid);
 	}
 
+	public void addOrders(Order order) {
+
+	}
+
+	public void addOrderItem(Order order) {
+
+	}
 }
