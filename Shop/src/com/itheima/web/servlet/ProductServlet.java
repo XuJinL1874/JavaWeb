@@ -67,6 +67,19 @@ public class ProductServlet extends BaseServlet {
         service.updateOrderAdrr(order);
 
         // 在线支付
+        // 获得选择的银行
+        String pd_FrpId = request.getParameter("pd_FrpId");
+        /*if (pd_FrpId.equals("ICBC-NET-B2C")) {
+            // 接入工行的接口
+        } else if (pd_FrpId.equals("ABC-NET-B2C")) {
+            // 接入农行的接口
+        }*/
+        // ......
+
+        // 直接入一个接口,这个接口已经集成所有的银行接口,这个接口是第三方支付平台提供的
+        // 接入的是易宝支付
+
+
 
     }
 
