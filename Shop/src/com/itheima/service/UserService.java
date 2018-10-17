@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import com.itheima.dao.UserDao;
 import com.itheima.domain.User;
-
 public class UserService {
 
 	public boolean regist(User user) {

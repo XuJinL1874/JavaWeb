@@ -130,4 +130,14 @@ public class ProductService {
 		}
 
 	}
+
+
+	public void updateOrderAdrr(Order order) {
+		ProductDao dao = new ProductDao();
+		try {
+			dao.updateOrderAdrr(order);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -77,4 +77,9 @@ public class ProductDao {
 
 	}
 
+	public void updateOrderAdrr(Order order) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "update order set address=?,name=?,telephone=? where oid=?";
+		runner.update(sql, order.getAddress(), order.getName(), order.getTelephone(), order.getOid());
+	}
 }

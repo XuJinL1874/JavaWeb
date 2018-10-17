@@ -5,6 +5,7 @@ import com.itheima.domain.*;
 import com.itheima.service.ProductService;
 import com.itheima.utils.CommonsUtils;
 import com.itheima.utils.JedisPoolUtils;
+import org.apache.commons.beanutils.BeanUtils;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
@@ -46,6 +48,28 @@ public class ProductServlet extends BaseServlet {
 		doGet(request, response);
 	}
 	 */
+
+    // 确认订单----更新收货人信息+在线支付
+    public void confirmOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // 更新收货人信息
+        Map<String, String[]> properties = request.getParameterMap();
+        Order order = new Order();
+        try {
+            BeanUtils.populate(order,properties);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        ProductService service = new ProductService();
+        service.updateOrderAdrr(order);
+
+        // 在线支付
+
+    }
+
 
     // 提交订单
     public void submitOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -125,7 +149,10 @@ public class ProductServlet extends BaseServlet {
         ProductService service = new ProductService();
         service.submitOrder(order);
 
+        session.setAttribute("order", order);
 
+        // 页面跳转
+        response.sendRedirect(request.getContextPath() + "/order_info.jsp");
 
     }
 
