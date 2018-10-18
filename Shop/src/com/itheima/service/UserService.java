@@ -4,10 +4,11 @@ import java.sql.SQLException;
 
 import com.itheima.dao.UserDao;
 import com.itheima.domain.User;
+
 public class UserService {
 
 	public boolean regist(User user) {
-		
+
 		UserDao dao = new UserDao();
 		int row = 0;
 		try {
@@ -15,7 +16,7 @@ public class UserService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return row>0?true:false;
 	}
 
@@ -46,4 +47,5 @@ public class UserService {
 		UserDao dao = new UserDao();
 		return dao.login(username,password);
 	}
+
 }

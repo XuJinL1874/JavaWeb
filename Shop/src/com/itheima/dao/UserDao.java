@@ -14,9 +14,9 @@ public class UserDao {
 	public int regist(User user) throws SQLException {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
-		int update = runner.update(sql, user.getUid(), user.getUsername(), user.getPassword(),
-				user.getName(), user.getEmail(), user.getTelephone(), user.getBirthday(),
-				user.getSex(), user.getState(), user.getCode());
+		int update = runner.update(sql, user.getUid(),user.getUsername(),user.getPassword(),
+				user.getName(),user.getEmail(),user.getTelephone(),user.getBirthday(),
+				user.getSex(),user.getState(),user.getCode());
 		return update;
 	}
 
@@ -24,7 +24,7 @@ public class UserDao {
 	public void active(String activeCode) throws SQLException {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "update user set state=? where code=?";
-		runner.update(sql, 1, activeCode);
+		runner.update(sql, 1,activeCode);
 	}
 
 	//校验用户名是否存在
@@ -39,7 +39,7 @@ public class UserDao {
 	public User login(String username, String password) throws SQLException {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "select * from user where username=? and password=?";
-		return runner.query(sql, new BeanHandler<User>(User.class), username, password);
+		return runner.query(sql, new BeanHandler<User>(User.class), username,password);
 	}
 
 }

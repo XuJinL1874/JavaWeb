@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.itheima.domain.Order;
-import com.itheima.domain.OrderItem;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.itheima.domain.Category;
+import com.itheima.domain.Order;
+import com.itheima.domain.OrderItem;
 import com.itheima.domain.Product;
 import com.itheima.utils.DataSourceUtils;
 
@@ -56,6 +56,7 @@ public class ProductDao {
 		return runner.query(sql, new BeanHandler<Product>(Product.class), pid);
 	}
 
+	
 	//向orders表插入数据
 	public void addOrders(Order order) throws SQLException {
 		QueryRunner runner = new QueryRunner();
@@ -74,12 +75,20 @@ public class ProductDao {
 		for(OrderItem item : orderItems){
 			runner.update(conn,sql,item.getItemid(),item.getCount(),item.getSubtotal(),item.getProduct().getPid(),item.getOrder().getOid());
 		}
-
+		
+		
 	}
 
 	public void updateOrderAdrr(Order order) throws SQLException {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "update order set address=?,name=?,telephone=? where oid=?";
-		runner.update(sql, order.getAddress(), order.getName(), order.getTelephone(), order.getOid());
+		String sql = "update orders set address=?,name=?,telephone=? where oid=?";
+		runner.update(sql, order.getAddress(),order.getName(),order.getTelephone(),order.getOid());
 	}
+
+	public void updateOrderState(String r6_Order) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "update orders set state=? where oid=?";
+		runner.update(sql, 1,r6_Order);
+	}
+
 }
