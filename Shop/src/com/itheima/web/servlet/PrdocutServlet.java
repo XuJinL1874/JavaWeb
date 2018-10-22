@@ -33,10 +33,32 @@ import com.itheima.utils.JedisPoolUtils;
 import com.itheima.utils.PaymentUtil;
 
 import redis.clients.jedis.Jedis;
-
+@SuppressWarnings("all")
 public class PrdocutServlet extends BaseServlet {
 
-	//确认订单---更新收获人信息+在线支付
+
+	// 获得我的订单
+	public void myOrders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+
+		// 判断用户是否已经登录 未登录下面代码不执行
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			// 没有登录
+			response.sendRedirect(request.getContextPath() + "/login.jsp");
+			return;
+		}
+
+		ProductService service = new ProductService();
+		// 查询用户所有 的订单信息(单表查询orders表)
+		// 集合中的每一个Order对象 缺少List<OrderItem> orderItems数据
+
+
+	}
+
+
+		//确认订单---更新收获人信息+在线支付
 	public void confirmOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//1、更新收货人信息
