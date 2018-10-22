@@ -53,8 +53,16 @@ public class PrdocutServlet extends BaseServlet {
 		ProductService service = new ProductService();
 		// 查询用户所有 的订单信息(单表查询orders表)
 		// 集合中的每一个Order对象 缺少List<OrderItem> orderItems数据
-
-
+		List<Order> orderList = service.findAllOrders(user.getUid());
+		// 循环所有的订单 为每个订单填充订单项集合信息
+		if (orderList != null) {
+			for (Order order : orderList) {
+				// 获得每一个订单的oid
+				String oid = order.getOid();
+				// 查询该订单的所有订单项
+				List<Map<String, Object>> mapList = service.findAllOrderItemsByOid(oid );
+			}
+		}
 	}
 
 

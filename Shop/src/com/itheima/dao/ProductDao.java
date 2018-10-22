@@ -3,10 +3,12 @@ package com.itheima.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.itheima.domain.Category;
@@ -91,4 +93,16 @@ public class ProductDao {
 		runner.update(sql, 1,r6_Order);
 	}
 
+	public List<Order> findAllOrders(String uid) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from orders where uid=?";
+		return runner.query(sql, new BeanListHandler<Order>(Order.class),uid);
+	}
+
+	public List<Map<String, Object>> findAllOrderItemsByOid(String oid) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select i.count,i.subtotal,p.pimage,p.pname,p.shop_price from orderitem i,product p where i.pid=p.pid and i.oid=?";
+		List<Map<String, Object>> mapList = runner.query(sql, new MapListHandler(), oid);
+		return mapList;
+	}
 }
