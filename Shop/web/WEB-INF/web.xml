@@ -4,6 +4,14 @@
   <welcome-file-list>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!--<filter>
+    <filter-name>UserLoginPrivilegeFilter</filter-name>
+    <filter-class>com.itheima.web.filter.UserLoginPrivilegeFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserLoginPrivilegeFilter</filter-name>
+    <servlet-name></servlet-name>
+  </filter-mapping>-->
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.itheima.web.servlet.RegisterServlet</servlet-class>
