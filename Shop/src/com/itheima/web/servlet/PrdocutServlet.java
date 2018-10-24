@@ -59,10 +59,32 @@ public class PrdocutServlet extends BaseServlet {
 			for (Order order : orderList) {
 				// 获得每一个订单的oid
 				String oid = order.getOid();
-				// 查询该订单的所有订单项
+				// 查询该订单的所有订单项----mapList封装的是多个订单项和该订单项中的商品的信息
 				List<Map<String, Object>> mapList = service.findAllOrderItemsByOid(oid );
+				// 将mapList转换成List<OrderItem> orderItems
+				for (Map<String, Object> map : mapList) {
+					try {
+						// 从map中取出count,subtotal封装到OrderItem中
+						OrderItem item = new OrderItem();
+						// item.setCount(Integer.parseInt(map.get("count").toString()));
+						BeanUtils.populate(item, map);
+						// 从map中取出pimage,pname,shop_price封装到Product中
+						Product product = new Product();
+						BeanUtils.populate(product, map);
+						// 将Product封装到OrderItem
+						item.setProduct(product);
+						// 将orderitem封装到order中orderItemList中
+						order.getOrderItems().add(item);
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
+		// orderList封装完整了
+
 	}
 
 
