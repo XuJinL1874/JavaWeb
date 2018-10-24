@@ -84,7 +84,8 @@ public class PrdocutServlet extends BaseServlet {
 			}
 		}
 		// orderList封装完整了
-
+		request.setAttribute("orderList", orderList);
+		request.getRequestDispatcher("/order_list.jsp").forward(request, response);
 	}
 
 
