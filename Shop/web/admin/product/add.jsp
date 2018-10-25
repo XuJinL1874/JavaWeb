@@ -4,6 +4,27 @@
 		<meta http-equiv="Content-Language" content="zh-cn">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<LINK href="${pageContext.request.contextPath}/css/Style1.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			
+			$(function () {
+				// 页面加载完毕后去异步获取分类数据
+                $.post(
+                    "${pageContext.request.contextPath}/admin?method=findAllCategory",
+                    function (data) {
+                        // [{"cid":"xx","cname":"xxx",....},{},{}]
+                        // 拼接多个<option value=""></option>放到select中
+                        var content = "";
+                        for (var i=0;i<data.length;i++) {
+                            content += "<option value='"+data[i].cid+"'>"+data[i].cname+"</option>"
+                        }
+                        $("#cid").html(content);
+                    },
+                    "json"
+                );
+            });
+			
+		</script>
 	</HEAD>
 	
 	<body>
@@ -63,10 +84,8 @@
 						所属分类：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<select name="categorySecond.csid">
-							<option value="">大型电器</option>
-							<option value="">手机数码</option>
-							<option value="">衣帽箱包</option>
+						<select id="cid" name="cid">
+
 						</select>
 					</td>
 				</tr>
