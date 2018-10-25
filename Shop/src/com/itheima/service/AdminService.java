@@ -2,6 +2,7 @@ package com.itheima.service;
 
 import com.itheima.dao.AdminDao;
 import com.itheima.domain.Category;
+import com.itheima.domain.Product;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,4 +25,8 @@ public class AdminService {
         }
     }
 
+    public void saveProduct(Product product) throws SQLException {
+        AdminDao dao = new AdminDao();
+        dao.saveProduct(product);
+    }
 }
