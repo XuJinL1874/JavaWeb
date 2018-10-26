@@ -23,6 +23,19 @@
 				});
 				
 			});
+
+			// 点击按钮查询某个订单详情
+			function findOrderInfoByOid(oid) {
+				// ajax异步访问数据
+				$.post(
+				    "${pageContext.request.contextPath}/admin?method=findOrderInfoByOid",
+					{"oid":oid},
+					function (data) {
+
+                    },
+					"json"
+				);
+            }
 			
 			
 			
@@ -93,7 +106,7 @@
 											${order.state==0?"未付款":"已付款"}
 										</td>
 										<td align="center" style="HEIGHT: 22px">
-											<input type="button" value="订单详情" class="clickedElement" onclick="findOrderInfoByOid('fc86891e-5126-452e-932d-c4fe382ba73f')"/>
+											<input type="button" value="订单详情" class="clickedElement" onclick="findOrderInfoByOid('${order.oid}')"/>
 										</td>
 
 									</tr>

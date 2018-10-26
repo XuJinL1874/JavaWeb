@@ -7,6 +7,7 @@ import com.itheima.domain.Product;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: X_JinL
@@ -40,5 +41,16 @@ public class AdminService {
             e.printStackTrace();
         }
         return orderList;
+    }
+
+    public List<Map<String, Object>> findOrderInfoByOid(String oid) {
+        AdminDao dao = new AdminDao();
+        List<Map<String, Object>> mapList = null;
+        try {
+            mapList = dao.findOrderInfoByOid(oid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mapList;
     }
 }
