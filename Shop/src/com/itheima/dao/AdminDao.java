@@ -1,6 +1,7 @@
 package com.itheima.dao;
 
 import com.itheima.domain.Category;
+import com.itheima.domain.Order;
 import com.itheima.domain.Product;
 import com.itheima.utils.DataSourceUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -28,5 +29,11 @@ public class AdminDao {
         runner.update(sql, product.getPid(),product.getPname(),product.getMarket_price(),
                 product.getShop_price(),product.getPimage(),product.getPdate(),
                 product.getIs_hot(),product.getPdesc(),product.getPflag(),product.getCategory().getCid());
+    }
+
+    public List<Order> findAllOrders() throws SQLException {
+        QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from orders";
+        return runner.query(sql ,new BeanListHandler<Order>(Order.class));
     }
 }

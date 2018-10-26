@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -66,33 +67,40 @@
 										订单详情
 									</td>
 								</tr>
-								<tr onmouseover="this.style.backgroundColor = 'white'"
-									onmouseout="this.style.backgroundColor = '#F5FAFE';">
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="18%">
-										1
-									</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="17%">
-										12345
-									</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="17%">
-										300
-									</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="17%">
-										zhangsan
-									</td>
-									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="17%">
-										已付款
-									</td>
-									<td align="center" style="HEIGHT: 22px">
-										<input type="button" value="订单详情" class="clickedElement" onclick="findOrderInfoByOid('fc86891e-5126-452e-932d-c4fe382ba73f')"/>
-									</td>
-					
-								</tr>
+
+								<c:forEach items="${orderList}" var="order" varStatus="vs">
+
+									<tr onmouseover="this.style.backgroundColor = 'white'"
+										onmouseout="this.style.backgroundColor = '#F5FAFE';">
+										<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+											width="18%">
+											${vs.count}
+										</td>
+										<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+											width="17%">
+											${order.oid}
+										</td>
+										<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+											width="17%">
+											${order.total}
+										</td>
+										<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+											width="17%">
+											${order.name}
+										</td>
+										<td style="CURSOR: hand; HEIGHT: 22px" align="center"
+											width="17%">
+											${order.state==0?"未付款":"已付款"}
+										</td>
+										<td align="center" style="HEIGHT: 22px">
+											<input type="button" value="订单详情" class="clickedElement" onclick="findOrderInfoByOid('fc86891e-5126-452e-932d-c4fe382ba73f')"/>
+										</td>
+
+									</tr>
+
+								</c:forEach>
+
+
 								
 							</table>
 						</td>

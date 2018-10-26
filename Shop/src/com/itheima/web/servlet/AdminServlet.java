@@ -2,6 +2,7 @@ package com.itheima.web.servlet;
 
 import com.google.gson.Gson;
 import com.itheima.domain.Category;
+import com.itheima.domain.Order;
 import com.itheima.service.AdminService;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,26 @@ import java.util.List;
  */
 @WebServlet(name = "AdminServlet", urlPatterns = {"/admin"})
 public class AdminServlet extends BaseServlet {
+
+    /**
+     *  获得所有的订单
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void findAllOrders(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 获得所有订单信息----List<Order>
+        AdminService service = new AdminService();
+        List<Order> orderList = service.findAllOrders();
+
+        request.setAttribute("orderList", orderList);
+
+        request.getRequestDispatcher("/admin/order/list.jsp").forward(request, response);
+
+    }
+
     public void findAllCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -32,7 +53,7 @@ public class AdminServlet extends BaseServlet {
 
         response.setContentType("type/html;charset=UTF-8");
 
-        response.getWriter().write(json);
+        response.getWriter().write(json );
     }
 
 }
