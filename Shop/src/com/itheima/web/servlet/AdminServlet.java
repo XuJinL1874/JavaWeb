@@ -35,6 +35,12 @@ public class AdminServlet extends BaseServlet {
     public void findOrderInfoByOid(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // 获得oid
         String oid = request.getParameter("oid");
 
@@ -44,6 +50,9 @@ public class AdminServlet extends BaseServlet {
         // ajax访问, 回显
         Gson gson = new Gson();
         String json = gson.toJson(mapList);
+        System.out.println(json);
+        /*[{"pimage":"products/1/c_0001.jpg","shop_price":1299.0,"pname":"小米 4c 标准版","subtotal":1299.0,"count":1},{"pimage":"products/1/c_0014.jpg","shop_price":2298.0,"pname":"vivo X5Pro","subtotal":2298.0,"count":1},{"pimage":"products/1/c_0016.jpg","shop_price":4087.0,"pname":"华为 HUAWEI Mate S 臻享版","subtotal":12261.0,"count":3}]
+        [{"pimage":"products/1/c_0034.jpg","shop_price":4499.0,"pname":"联想（Lenovo）小新V3000经典版","subtotal":4499.0,"count":1},{"pimage":"products/1/c_0016.jpg","shop_price":4087.0,"pname":"华为 HUAWEI Mate S 臻享版","subtotal":12261.0,"count":3},{"pimage":"products/1/c_0001.jpg","shop_price":1299.0,"pname":"小米 4c 标准版","subtotal":1299.0,"count":1}]*/
 
         response.setContentType("text/html;charset=UTF-8");
 

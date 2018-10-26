@@ -26,12 +26,47 @@
 
 			// 点击按钮查询某个订单详情
 			function findOrderInfoByOid(oid) {
+
+			    // 清理上一次显示的内容
+                $("#showDivTab").html("");
+                $("#showDivOid").html("");
+                $("#loading").css("display", "block");
+
+
 				// ajax异步访问数据
 				$.post(
 				    "${pageContext.request.contextPath}/admin?method=findOrderInfoByOid",
 					{"oid":oid},
 					function (data) {
 
+				        // 隐藏加载图片
+                        $("#loading").css("display", "none");
+
+                        /*[{"pimage":"products/1/c_0001.jpg","shop_price":1299.0,"pname":"小米 4c 标准版","subtotal":1299.0,"count":1},{"pimage":"products/1/c_0014.jpg","shop_price":2298.0,"pname":"vivo X5Pro","subtotal":2298.0,"count":1},{"pimage":"products/1/c_0016.jpg","shop_price":4087.0,"pname":"华为 HUAWEI Mate S 臻享版","subtotal":12261.0,"count":3}]
+        				[{"pimage":"products/1/c_0034.jpg","shop_price":4499.0,"pname":"联想（Lenovo）小新V3000经典版","subtotal":4499.0,"count":1},{"pimage":"products/1/c_0016.jpg","shop_price":4087.0,"pname":"华为 HUAWEI Mate S 臻享版","subtotal":12261.0,"count":3},{"pimage":"products/1/c_0001.jpg","shop_price":1299.0,"pname":"小米 4c 标准版","subtotal":1299.0,"count":1}]*/
+
+                        var content = "<tr id='showTableTitle'>\n" +
+                            "\t\t\t\t\t\t\t<th width='20%'>图片</th>\n" +
+                            "\t\t\t\t\t\t\t<th width='25%'>商品</th>\n" +
+                            "\t\t\t\t\t\t\t<th width='20%'>价格</th>\n" +
+                            "\t\t\t\t\t\t\t<th width='15%'>数量</th>\n" +
+                            "\t\t\t\t\t\t\t<th width='20%'>小计</th>\n" +
+                            "\t\t\t\t\t\t</tr>";
+						for(var i=0;i<data.length;i++) {
+						    content += "<tr style='text-align: center;'>\n" +
+                                "\t\t\t\t\t\t\t<td>\n" +
+                                "\t\t\t\t\t\t\t\t<img src='${pageContext.request.contextPath }/"+data[i].pimage+"' width='70' height='60'>\n" +
+                                "\t\t\t\t\t\t\t</td>\n" +
+                                "\t\t\t\t\t\t\t<td><a target='_blank'>"+data[i].pname+"</a></td>\n" +
+                                "\t\t\t\t\t\t\t<td>￥"+data[i].shop_price+"</td>\n" +
+                                "\t\t\t\t\t\t\t<td>"+data[i].count+"</td>\n" +
+                                "\t\t\t\t\t\t\t<td><span class='subtotal'>￥"+data[i].subtotal+"</span></td>\n" +
+                                "\t\t\t\t\t\t</tr>";
+                        }
+                        $("#showDivTab").html(content);
+
+						// 订单编号
+                        $("#showDivOid").html(oid);
                     },
 					"json"
 				);
@@ -126,40 +161,14 @@
 		<!-- 弹出层 HaoHao added -->
         <div id="showDiv" class="blk" style="display:none;">
             <div class="main">
-                <h2>订单编号：<span id="shodDivOid" style="font-size: 13px;color: #999">123456789</span></h2>
+                <h2>订单编号：<span id="showDivOid" style="font-size: 13px;color: #999">123456789</span></h2>
                 <a href="javascript:void(0);" id="closeBtn" class="closeBtn">关闭</a>
                 <div id="loading" style="padding-top:30px;text-align: center;">
-                	<img alt="" src="${pageContext.request.contextPath }/images/loading.gif">
+                	<img alt="" style="width: 100px;height: 100px;" src="${pageContext.request.contextPath }/images/loading.gif">
                 </div>
 				<div style="padding:20px;">
 					<table id="showDivTab" style="width:100%">
-						<tr id='showTableTitle'>
-							<th width='20%'>图片</th>
-							<th width='25%'>商品</th>
-							<th width='20%'>价格</th>
-							<th width='15%'>数量</th>
-							<th width='20%'>小计</th>
-						</tr>
-						<tr style='text-align: center;'>
-							<td>
-								<img src='${pageContext.request.contextPath }/products/1/c_0014' width='70' height='60'>
-							</td>
-							<td><a target='_blank'>电视机</a></td>
-							<td>￥3000</td>
-							<td>3</td>
-							<td><span class='subtotal'>￥9000</span></td>
-						</tr>
-						<tr style='text-align: center;'>
-							<td>
-								<img src='${pageContext.request.contextPath }/products/1/c_0014' width='70' height='60'>
-							</td>
-							<td><a target='_blank'>电视机</a></td>
-							<td>￥3000</td>
-							<td>3</td>
-							<td><span class='subtotal'>￥9000</span></td>
-						</tr>
-						
-						
+
 					</table>
 				</div>
             </div>

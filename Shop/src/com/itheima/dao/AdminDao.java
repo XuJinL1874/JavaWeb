@@ -42,8 +42,8 @@ public class AdminDao {
     public List<Map<String, Object>> findOrderInfoByOid(String oid) throws SQLException {
         QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
         String sql = "select p.pimage,p.pname,p.shop_price,i.count,i.subtotal "+
-                "from orderitem i,product p"+
-                "where i.pid=p.pid and i.oid=?";
+                " from orderitem i,product p "+
+                " where i.pid=p.pid and i.oid=? ";
         return runner.query(sql, new MapListHandler(), oid);
     }
 }
