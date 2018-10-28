@@ -45,7 +45,7 @@
                         /*[{"pimage":"products/1/c_0001.jpg","shop_price":1299.0,"pname":"小米 4c 标准版","subtotal":1299.0,"count":1},{"pimage":"products/1/c_0014.jpg","shop_price":2298.0,"pname":"vivo X5Pro","subtotal":2298.0,"count":1},{"pimage":"products/1/c_0016.jpg","shop_price":4087.0,"pname":"华为 HUAWEI Mate S 臻享版","subtotal":12261.0,"count":3}]
         				[{"pimage":"products/1/c_0034.jpg","shop_price":4499.0,"pname":"联想（Lenovo）小新V3000经典版","subtotal":4499.0,"count":1},{"pimage":"products/1/c_0016.jpg","shop_price":4087.0,"pname":"华为 HUAWEI Mate S 臻享版","subtotal":12261.0,"count":3},{"pimage":"products/1/c_0001.jpg","shop_price":1299.0,"pname":"小米 4c 标准版","subtotal":1299.0,"count":1}]*/
 
-                        var  content = "<tr id='showTableTitle'>\n" +
+                        var content = "<tr id='showTableTitle'>\n" +
                             "\t\t\t\t\t\t\t<th width='20%'>图片</th>\n" +
                             "\t\t\t\t\t\t\t<th width='25%'>商品</th>\n" +
                             "\t\t\t\t\t\t\t<th width='20%'>价格</th>\n" +
