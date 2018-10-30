@@ -8,6 +8,10 @@ package cn.mastc.bean;
  */
 public class User {
 
+    public User(){
+        System.out.println("User对象空参构造方法!!!");
+    }
+
     private String name;
     private String age;
 
