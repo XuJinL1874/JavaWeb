@@ -30,4 +30,12 @@ public class User {
     public void setAge(String age) {
         this.age = age;
     }
+
+    public void init() {
+        System.out.println("我是初始化方法!!!");
+    }
+
+    public void destory() {
+        System.out.println("我是销毁方法!!!");
+    }
 }

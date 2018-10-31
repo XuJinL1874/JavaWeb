@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
    <!-- 创建方式1:空参构造创建 -->
-    <bean name="user" class="cn.mastc.bean.User"></bean>
+    <bean name="user" class="cn.mastc.bean.User" init-method="init" destroy-method="destory"></bean>
    <!-- 创建方式2:静态工厂创建
         调用UserFactory的createUser方法创建名为user2的对象,放入容器
     -->
