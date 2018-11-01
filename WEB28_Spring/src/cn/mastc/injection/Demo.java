@@ -23,5 +23,16 @@ public class Demo {
         System.out.println(user);
 
     }
+    @Test
+    public void fun2(){
+
+        // 1.创建容器对象
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("cn/mastc/injection/applicationContext.xml");
+        // 2.向容器"要"user对象
+        Object user = applicationContext.getBean("user2");
+        // 3.打印user对象
+        System.out.println(user);
+
+    }
 
 }

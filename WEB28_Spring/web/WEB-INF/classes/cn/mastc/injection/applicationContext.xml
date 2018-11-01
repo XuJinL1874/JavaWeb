@@ -19,10 +19,7 @@
 <!-- ============================================================================= -->
     <!-- 构造函数注入 -->
     <bean name="user2" class="cn.mastc.bean.User">
-        <!-- name属性:构造函数的参数名 -->
-        <!-- index属性:构造函数的参数索引 -->
-        <!-- type属性:构造函数的参数类型 -->
-        <constructor-arg name="name" index="0" type="java.lang.Integer" value="999"></constructor-arg>
+        <constructor-arg name="name" value="999" index="0" type="java.lang.Integer"></constructor-arg>
         <constructor-arg name="car" ref="car" index="1"></constructor-arg>
     </bean>
 </beans>

@@ -16,6 +16,24 @@ public class User {
     private String age;
     private Car car;
 
+    public User(String name, Car car) {
+        System.out.println("User(String name, Car car)!!!");
+        this.name = name;
+        this.car = car;
+    }
+
+    public User(Car car, String name) {
+        System.out.println("User(Car car, String name)!!!");
+        this.name = name;
+        this.car = car;
+    }
+
+    public User(Integer name, Car car) {
+        System.out.println("User(Integer name, Car car)!!!");
+        this.name = name + "";
+        this.car = car;
+    }
+
     public Car getCar() {
         return car;
     }
