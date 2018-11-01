@@ -14,6 +14,15 @@ public class User {
 
     private String name;
     private String age;
+    private Car car;
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
 
     public String getName() {
         return name;
@@ -37,5 +46,14 @@ public class User {
 
     public void destory() {
         System.out.println("我是销毁方法!!!");
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age='" + age + '\'' +
+                ", car=" + car +
+                '}';
     }
 }

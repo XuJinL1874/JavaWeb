@@ -13,4 +13,8 @@
 
      -->
     <bean name="user" class="cn.mastc.bean.User"></bean>
+
+    <!-- 导入其他spring配置文件 -->
+    <import resource="cn/mastc/create/applicationContext.xml" />
+
 </beans>
