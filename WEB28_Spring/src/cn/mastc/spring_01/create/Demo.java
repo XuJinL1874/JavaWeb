@@ -1,6 +1,6 @@
-package cn.mastc.create;
+package cn.mastc.spring_01.create;
 
-import cn.mastc.bean.User;
+import cn.mastc.spring_01.bean.User;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

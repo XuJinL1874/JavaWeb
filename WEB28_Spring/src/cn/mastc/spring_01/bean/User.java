@@ -1,4 +1,4 @@
-package cn.mastc.bean;
+package cn.mastc.spring_01.bean;
 
 /**
  * @Author: X_JinL

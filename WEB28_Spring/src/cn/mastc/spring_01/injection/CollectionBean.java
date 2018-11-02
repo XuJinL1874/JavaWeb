@@ -1,4 +1,4 @@
-package cn.mastc.injection;
+package cn.mastc.spring_01.injection;
 
 import java.util.Arrays;
 import java.util.List;

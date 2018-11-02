@@ -1,4 +1,4 @@
-package cn.mastc.injection;
+package cn.mastc.spring_01.injection;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

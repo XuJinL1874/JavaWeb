@@ -1,4 +1,4 @@
-package cn.mastc.demo;
+package cn.mastc.spring_01.demo;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
