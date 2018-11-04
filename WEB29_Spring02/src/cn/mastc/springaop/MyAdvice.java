@@ -1,4 +1,4 @@
-package cn.mastc.aspect;
+package cn.mastc.springaop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 
