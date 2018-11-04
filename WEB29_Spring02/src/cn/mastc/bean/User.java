@@ -30,7 +30,7 @@ public class User {
 	//问题:如果匹配多个类型一致的对象.将无法选择具体注入哪一个对象.
 	//@Qualifier("car2")//使用@Qualifier注解告诉spring容器自动装配哪个名称的对象
 	
-	@Resource(name="car")//手动注入,指定注入哪个名称的对象
+	@Resource(name="car2")//手动注入,指定注入哪个名称的对象
 	private Car car;
 	
 	public Car getCar() {
