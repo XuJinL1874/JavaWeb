@@ -1,0 +1,37 @@
+package cn.mastc.bean;
+
+/**
+ * @Author: X_JinL
+ * @Description:
+ * @Date: Created in 13:48 2018/11/6
+ * @Modified By:
+ */
+public class User {
+
+    private Integer id;
+    private String name;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
