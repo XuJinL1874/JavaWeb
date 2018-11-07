@@ -27,5 +27,6 @@
     <orderEntry type="library" name="com.springsource.com.mchange.v2.c3p0-0.9.1.2" level="project" />
     <orderEntry type="library" name="com.springsource.org.apache.commons.logging-1.1.1" level="project" />
     <orderEntry type="library" name="com.springsource.org.apache.log4j-1.2.15" level="project" />
+    <orderEntry type="library" name="com.springsource.org.aspectj.weaver-1.6.8.RELEASE" level="project" />
   </component>
 </module>
