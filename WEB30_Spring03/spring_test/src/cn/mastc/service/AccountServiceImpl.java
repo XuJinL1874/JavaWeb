@@ -1,6 +1,9 @@
 package cn.mastc.service;
 
 import cn.mastc.dao.AccountDao;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 /**
@@ -9,6 +12,7 @@ import org.springframework.transaction.support.TransactionTemplate;
  * @Date: Created in 16:25 2018/11/7
  * @Modified By:
  */
+@Transactional( isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED,readOnly = true)
 public class AccountServiceImpl implements AccountService {
 
     public void setAd(AccountDao ad) {
@@ -23,6 +27,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED,readOnly = false)
     public void transfer(Integer from, Integer to, Double money) {
 
                 // 减钱
