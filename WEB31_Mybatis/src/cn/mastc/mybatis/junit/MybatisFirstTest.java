@@ -31,6 +31,8 @@ public class MybatisFirstTest {
         User user = sqlSession.selectOne("test.findUserById", 10);
 
         System.out.println(user);
+
+
     }
 
 }
