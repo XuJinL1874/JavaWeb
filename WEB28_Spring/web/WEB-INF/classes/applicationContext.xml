@@ -12,9 +12,9 @@
               结论:尽量使用name属性
 
      -->
-    <bean name="user" class="cn.mastc.bean.User"></bean>
+    <bean name="user" class="cn.mastc.spring_01.bean.User"></bean>
 
     <!-- 导入其他spring配置文件 -->
-    <import resource="cn/mastc/create/applicationContext.xml" />
+    <import resource="cn/mastc/spring_01/create/applicationContext.xml" />
 
 </beans>

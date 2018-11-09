@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WEB_01/WEB_01.iml" filepath="$PROJECT_DIR$/WEB_01/WEB_01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WEB_12/WEB_12.iml" filepath="$PROJECT_DIR$/WEB_12/WEB_12.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WEB_01/Web_01/Web_01.iml" filepath="$PROJECT_DIR$/WEB_01/Web_01/Web_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WEB08_JDBC/WEB08_JDBC.iml" filepath="$PROJECT_DIR$/WEB08_JDBC/WEB08_JDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WEB09_JDBC/WEB09_JDBC.iml" filepath="$PROJECT_DIR$/WEB09_JDBC/WEB09_JDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WEB10_JDBC/WEB10_JDBC.iml" filepath="$PROJECT_DIR$/WEB10_JDBC/WEB10_JDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WEB11_XML/WEB11_XML.iml" filepath="$PROJECT_DIR$/WEB11_XML/WEB11_XML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WEB12_Tomcat/WEB12_Tomcat.iml" filepath="$PROJECT_DIR$/WEB12_Tomcat/WEB12_Tomcat.iml" />
     </modules>
   </component>
 </project>
