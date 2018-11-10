@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="WEB31_Mybatis">
+    <output-path>$PROJECT_DIR$/out/artifacts/WEB31_Mybatis</output-path>
+    <root id="root" />
+  </artifact>
+</component>
