@@ -38,4 +38,22 @@ public class MybatisMapperTest {
 
     }
 
+    @Test
+    public void testMapperQueyVo() throws IOException {
+        //加载核心配置文件
+        String resource = "SqlMapConfig.xml";
+        InputStream in = Resources.getResourceAsStream(resource);
+        //创建SqlSessionFactory
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+        //创建SqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        // SqlSession帮我们生成一个实现类(前提:要给接口)
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user = userMapper.findUserByQueryVo();
+        System.out.println(user);
+
+    }
+
 }

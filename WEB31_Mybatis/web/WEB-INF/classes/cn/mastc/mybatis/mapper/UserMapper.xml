@@ -26,10 +26,7 @@
     </environments>
     <!-- Mapper的位置 -->
     <mappers>
-        <!--<mapper resource="" class="" url="" ></mapper>-->
         <!--<mapper resource="sqlmap/User.xml"/>-->
-        <!--<mapper class="cn.mastc.mybatis.mapper.UserMapper"/>-->
-        <!--<mapper url="(绝对路径:盘符)"/>-->
         <package name="cn.mastc.mybatis.mapper" />
     </mappers>
 </configuration>

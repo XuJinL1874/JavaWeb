@@ -1,6 +1,9 @@
 package cn.mastc.mybatis.mapper;
 
+import cn.mastc.mybatis.pojo.QueryVo;
 import cn.mastc.mybatis.pojo.User;
+
+import java.util.List;
 
 /**
  * @author X_JinL
@@ -19,5 +22,6 @@ public interface UserMapper {
 
 
     public User findUserById(Integer id);
+    public List<User> findUserByQueryVo(QueryVo vo);
 
 }

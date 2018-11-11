@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-    <properties resource="jdbc.properties"/>
-    <!-- 别名 包以其子包下所有类   头字母大小都行-->
-    <typeAliases>
-        <!-- 		<typeAlias type="com.itheima.mybatis.pojo.User" alias="User"/> -->
-        <package name="com.mastc.mybatis.pojo"/>
-    </typeAliases>
-    <!-- 和spring整合后 environments配置将废除    -->
-    <environments default="development">
-        <environment id="development">
-            <!-- 使用jdbc事务管理 -->
-            <transactionManager type="JDBC" />
-            <!-- 数据库连接池 -->
-            <dataSource type="POOLED">
-                <property name="driver" value="${jdbc.driver}" />
-                <property name="url"
-                          value="${jdbc.url}" />
-                <property name="username" value="${jdbc.username}" />
-                <property name="password" value="${jdbc.password}" />
-            </dataSource>
-        </environment>
-    </environments>
-    <!-- Mapper的位置 -->
-    <mappers>
-        <!--<mapper resource="" class="" url="" ></mapper>-->
-        <!--<mapper resource="sqlmap/User.xml"/>-->
-        <!--<mapper class="cn.mastc.mybatis.mapper.UserMapper"/>-->
-        <!--<mapper url="(绝对路径:盘符)"/>-->
-        <package name="cn.mastc.mybatis.mapper" />
-    </mappers>
-</configuration>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 写sql语句 -->
+<mapper namespace="cn.mastc.mybatis.mapper.UserMapper">
+
+    <select id="findUserById" parameterType="Integer" resultType="cn.mastc.mybatis.pojo.User">
+      select * from user where id = #{v}
+    </select>
+
+    <!-- 根据用户名模糊查询用户
+     #{v}  select * from user where id = ?  占位符 ? == '五'
+     ${}   select * from user where username like '%五%' 字符串拼接
+     -->
+    <select id="findUserByUsername" parameterType="String" resultType="cn.mastc.mybatis.pojo.User">
+        select * from user where username like '%${value}%'
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="insertUser" parameterType="cn.mastc.mybatis.pojo.User">
+        <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into user (username,birthday,address,sex) values (#{username},#{birthday},#{address},#{sex})
+    </insert>
+
+    <!-- 更新用户 -->
+    <update id="updateUserById" parameterType="cn.mastc.mybatis.pojo.User">
+        update user
+        set username = #{username},sex = #{sex},birthday = #{birthday},address = #{address}
+        where id = #{id}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUserById" parameterType="Integer">
+        delete from user where id = #{haha}
+    </delete>
+
+    <!-- 根据用户名模糊查询 -->
+    <select id="findUserByQueryVo" parameterType="QueryVo" resultType="cn.mastc.mybatis.pojo.User">
+        select * from user where username like "%"#{user.username}"%"
+    </select>
+</mapper>
