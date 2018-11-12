@@ -16,5 +16,8 @@ public interface UserMapper {
 
 	public User findUserById(Integer id);
 	public List<User> findUserByQueryVo(QueryVo vo);
+
+    // 查询数据条数
+    public Integer userCount();
 	
 }

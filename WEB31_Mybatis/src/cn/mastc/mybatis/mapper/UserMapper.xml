@@ -45,4 +45,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from user where username like "%"#{user.username}"%"
 	</select>
 
+
+	<!--
+	-->
+	<select id="userCount" resultType="Integer">
+		select count(*) from user
+	</select>
 </mapper>
