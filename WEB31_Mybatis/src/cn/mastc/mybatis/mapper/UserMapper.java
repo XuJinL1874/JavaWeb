@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserMapper {
 
-	
+
 	//遵循四个原则
 	//接口 方法名  == User.xml 中 id 名
 	//返回值类型  与  Mapper.xml文件中返回值类型要一致
@@ -19,5 +19,8 @@ public interface UserMapper {
 
     // 查询数据条数
     public Integer userCount();
-	
+
+    // 根据性别和名字查询用户
+    public List<User> selectUserBySexAndUsername(User user);
+
 }

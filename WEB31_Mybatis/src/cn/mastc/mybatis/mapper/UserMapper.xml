@@ -4,6 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 写Sql语句   -->
 <mapper namespace="cn.mastc.mybatis.mapper.UserMapper">
+
+	<sql id="selector">
+		select * from user
+	</sql>
+
 	<!-- 通过ID查询一个用户 -->
 	<select id="findUserById" parameterType="Integer" resultType="User">
 		select * from user where id = #{v}
@@ -51,4 +56,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="userCount" resultType="Integer">
 		select count(*) from user
 	</select>
+
+	<!-- 根据性别和名字查询用户 where可以去掉前一个and -->
+	<select id="selectUserBySexAndUsername" parameterType="User" resultType="User">
+		<include refid="selector"></include>
+		<where>
+			<if test="sex != null and sex != ''">
+				sex = #{sex}
+			</if>
+			<if test="username != null and username != ''">
+				and username = #{username}
+			</if>
+		</where>
+	</select>
+
 </mapper>

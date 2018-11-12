@@ -93,4 +93,28 @@ public class MybatisMapperTest {
 		}
 	}
 
+	@Test
+	public void testFindUserBySexAndUsername() throws Exception {
+		//加载核心配置文件
+		String resource = "sqlMapConfig.xml";
+		InputStream in = Resources.getResourceAsStream(resource);
+		//创建SqlSessionFactory
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+		//创建SqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		User user = new User();
+		user.setSex("1");
+		user.setUsername("张小明");
+
+		List<User> users = userMapper.selectUserBySexAndUsername(user);
+		for (User user2 : users) {
+			System.out.println(user2);
+		}
+
+	}
+
 }
