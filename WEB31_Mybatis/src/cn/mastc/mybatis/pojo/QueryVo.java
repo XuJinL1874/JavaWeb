@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @version 1.0.0
  * @ClassName QueryVo.java
  * @Description
- * @createTime 2018/11/11 17:17
+ * @createTime 2018/11/12 15:04
  */
 public class QueryVo implements Serializable {
 

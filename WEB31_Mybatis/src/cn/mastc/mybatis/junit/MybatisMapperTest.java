@@ -1,6 +1,8 @@
 package cn.mastc.mybatis.junit;
 
+
 import cn.mastc.mybatis.mapper.UserMapper;
+import cn.mastc.mybatis.pojo.QueryVo;
 import cn.mastc.mybatis.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -8,52 +10,51 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
-/**
- * @author X_JinL
- * @version 1.0.0
- * @ClassName
- * @Description
- * @createTime 2018/11/11 15:14
- */
 public class MybatisMapperTest {
 
-    @Test
-    public void testMapper() throws IOException {
-        //加载核心配置文件
-        String resource = "SqlMapConfig.xml";
-        InputStream in = Resources.getResourceAsStream(resource);
-        //创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
-        //创建SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+	
+	@Test
+	public void testMapper() throws Exception {
+		//加载核心配置文件
+		String resource = "sqlMapConfig.xml";
+		InputStream in = Resources.getResourceAsStream(resource);
+		//创建SqlSessionFactory
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+		//创建SqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		//SqlSEssion帮我生成一个实现类  （给接口）
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		
+		User user = userMapper.findUserById(10);
+		System.out.println(user);
+	}
 
-        // SqlSession帮我们生成一个实现类(前提:要给接口)
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+	@Test
+	public void testMapperQueryVo() throws Exception {
+		//加载核心配置文件
+		String resource = "sqlMapConfig.xml";
+		InputStream in = Resources.getResourceAsStream(resource);
+		//创建SqlSessionFactory
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+		//创建SqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        User user = userMapper.findUserById(10);
-        System.out.println(user);
+		//SqlSEssion帮我生成一个实现类  （给接口）
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		QueryVo vo = new QueryVo();
+		User user = new User();
+		user.setUsername("五");
+		vo.setUser(user);
 
-    }
-
-    @Test
-    public void testMapperQueyVo() throws IOException {
-        //加载核心配置文件
-        String resource = "SqlMapConfig.xml";
-        InputStream in = Resources.getResourceAsStream(resource);
-        //创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
-        //创建SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-
-        // SqlSession帮我们生成一个实现类(前提:要给接口)
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-
-        User user = userMapper.findUserByQueryVo();
-        System.out.println(user);
-
-    }
+		List<User> us = userMapper.findUserByQueryVo(vo);
+		for (User u : us) {
+			System.out.println(user);
+		}
+	}
 
 }
