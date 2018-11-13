@@ -70,4 +70,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
+	<!-- 多个Id查询用户信息 -->
+	<select id="selectUserByIds" parameterType="QueryVo" resultType="User">
+		<include refid="selector"></include>
+		<where>
+			id in
+			<foreach collection="idList" item="id" separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</where>
+	</select>
+
 </mapper>

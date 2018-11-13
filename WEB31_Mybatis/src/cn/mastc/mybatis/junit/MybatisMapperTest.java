@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -93,6 +94,7 @@ public class MybatisMapperTest {
 		}
 	}
 
+	// 根据性别和名字查询用户
 	@Test
 	public void testFindUserBySexAndUsername() throws Exception {
 		//加载核心配置文件
@@ -113,6 +115,32 @@ public class MybatisMapperTest {
 		List<User> users = userMapper.selectUserBySexAndUsername(user);
 		for (User user2 : users) {
 			System.out.println(user2);
+		}
+
+	}
+
+	// 多个id查询用户信息
+	@Test
+	public void testFindUserById() throws Exception {
+		//加载核心配置文件
+		String resource = "sqlMapConfig.xml";
+		InputStream in = Resources.getResourceAsStream(resource);
+		//创建SqlSessionFactory
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
+		//创建SqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		List<Integer> ids = new ArrayList<>();
+		ids.add(16);
+		ids.add(22);
+		ids.add(24);
+		QueryVo vo = new QueryVo();
+		vo.setIdList(ids);
+
+		List<User> users = userMapper.selectUserByIds(vo);
+		for (User user01 : users) {
+			System.out.println(user01);
 		}
 
 	}
