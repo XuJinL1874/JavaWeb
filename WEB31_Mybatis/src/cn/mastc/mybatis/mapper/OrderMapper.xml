@@ -39,4 +39,30 @@
 	 	on o.user_id = u.id
 	 </select>
 
+    <!--
+    一对多关联 以用户为中心
+    public List<User> selectUserList();
+     -->
+    <resultMap id="user" type="User">
+        <id column="user_id" property="id"/>
+        <result column="username" property="username"/>
+        <!-- 一对多 -->
+        <collection property="ordersList" ofType="Orders">
+            <id column="id" property="id"/>
+            <result column="number" property="number"/>
+        </collection>
+    </resultMap>
+    <select id="selectUserList" resultMap="user">
+        select
+        o.id,
+        o.user_id,
+        o.number,
+        o.createtime,
+        o.note,
+        u.username
+        from user u
+        left join orders o
+        on o.user_id = u.id
+    </select>
+
 </mapper>

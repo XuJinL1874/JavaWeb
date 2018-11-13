@@ -1,6 +1,7 @@
 package cn.mastc.mybatis.mapper;
 
 import cn.mastc.mybatis.pojo.Orders;
+import cn.mastc.mybatis.pojo.User;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public interface OrderMapper {
 
     // 一对一关联查询 以订单为中心查询用户
     public List<Orders> selectOrders();
+
+    // 一对多关联
+    public List<User> selectUserList();
 
 
 }
