@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+    <!-- 前段控制器 -->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 默认找 /WEB-INF/[servlet的名称]-servlet.xml -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!--
+         1. /* 拦截所有 jsp js png .css 真的全拦截   建议不使用
+         2. *.action *.do 拦截以action do 结尾的请求    肯定能使用 ERP
+         3. / 拦截所有(不包含.jsp)(包含.js .png .css)    建议使用 前台 面向消费者 www.jd.com/search    /对静态资源放行
+         -->
+        <url-pattern>*.action</url-pattern>
+    </servlet-mapping>
+</web-app>
