@@ -18,7 +18,7 @@ public class MybatisMapperTest2 {
 
 	@Test
 	public void testOrderList() throws Exception {
-		//加载核心配置文件
+		//加载核心配置文 件
 		String resource = "sqlMapConfig.xml";
 		InputStream in = Resources.getResourceAsStream(resource);
 		//创建SqlSessionFactory
