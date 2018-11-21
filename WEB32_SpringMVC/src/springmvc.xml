@@ -10,4 +10,17 @@
     <!-- 扫描@Controller @Service -->
     <context:component-scan base-package="cn.mastc"/>
 
+    <!-- 处理器映射器
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+     处理器适配器
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+    <!-- 注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
 </beans>

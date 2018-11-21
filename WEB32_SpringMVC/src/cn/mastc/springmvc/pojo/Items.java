@@ -3,19 +3,7 @@ package cn.mastc.springmvc.pojo;
 import java.util.Date;
 
 public class Items {
-	
-	
-	
-    public Items(Integer id, String name, Float price, Date createtime, String detail) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.createtime = createtime;
-		this.detail = detail;
-	}
-
-	private Integer id;
+    private Integer id;
 
     private String name;
 
