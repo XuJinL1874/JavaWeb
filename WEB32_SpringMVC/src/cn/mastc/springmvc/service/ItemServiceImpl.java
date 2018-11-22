@@ -5,6 +5,7 @@ import cn.mastc.springmvc.pojo.Items;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,5 +26,18 @@ public class ItemServiceImpl implements ItemService{
     public List<Items> selectItemsList() {
         return itemsMapper.selectByExampleWithBLOBs(null);
     }
+    // 查询商品(id)
+    @Override
+    public Items selectItemsById(Integer id) {
+        return itemsMapper.selectByPrimaryKey(id);
+    }
+
+    // 修改
+    @Override
+    public void updayeItemsById(Items items) {
+        items.setCreatetime(new Date());
+        itemsMapper.updateByPrimaryKeyWithBLOBs(items);
+    }
+
 
 }

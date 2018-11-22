@@ -15,7 +15,17 @@
      处理器适配器
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
     <!-- 注解驱动 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"/>
+
+    <!-- 配置Conveter转换器 转换工厂(日期,去掉前空格)...... -->
+    <bean id="conversionServiceFactoryBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!-- 配置多个转换器 -->
+        <property name="converters">
+            <list>
+                <bean class="cn.mastc.springmvc.conversion.DateConveter"/>
+            </list>
+        </property>
+    </bean>
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
