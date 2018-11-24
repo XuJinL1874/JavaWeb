@@ -16,9 +16,12 @@
 <td><input type="submit" value="查询"/></td>
 </tr>
 </table>
+</form>
 商品列表：
+<form action="${pageContext.request.contextPath}/deletes.action" method="post">
 <table width="100%" border=1>
 <tr>
+	<td><input type="checkbox" name="ids" value=""/> </td>
 	<td>商品名称</td>
 	<td>商品价格</td>
 	<td>生产日期</td>
@@ -27,6 +30,7 @@
 </tr>
 <c:forEach items="${itemList }" var="item">
 <tr>
+	<td><input type="checkbox" name="ids" value="${item.id}"/> </td>
 	<td>${item.name }</td>
 	<td>${item.price }</td>
 	<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -36,8 +40,8 @@
 
 </tr>
 </c:forEach>
-
 </table>
+	<input type="submit" value="删除">
 </form>
 </body>
 

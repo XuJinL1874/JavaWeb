@@ -1,6 +1,7 @@
 package cn.mastc.springmvc.controller;
 
 import cn.mastc.springmvc.pojo.Items;
+import cn.mastc.springmvc.pojo.QueryVo;
 import cn.mastc.springmvc.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,6 +64,16 @@ public class ItemController {
 
         // 修改
         itemService.updayeItemsById(items);
+
+        ModelAndView mav = new ModelAndView();
+        // 数据
+        mav.setViewName("success");
+        return mav;
+    }
+
+    // 删除多个
+    @RequestMapping(value = "/deletes.action")
+    public ModelAndView deletes(QueryVo vo) {
 
         ModelAndView mav = new ModelAndView();
         // 数据
