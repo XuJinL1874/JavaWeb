@@ -3,19 +3,23 @@ package cn.mastc.springmvc.controller;
 import cn.mastc.springmvc.pojo.Items;
 import cn.mastc.springmvc.pojo.QueryVo;
 import cn.mastc.springmvc.service.ItemService;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author X_JinL
@@ -47,12 +51,16 @@ public class ItemController {
         mav.setViewName("itemList");
         return mav;
     }*/
-    public String itemList(Model model) {
+    public String itemList(Model model,HttpServletRequest request,HttpServletResponse response) {
 
-        Integer i = 1/0;
+//		Integer i = 1/0;
+
 
         //从Mysql中查询
         List<Items> list = itemService.selectItemsList();
+//		if(null == null){
+//			throw new MessageException("商品信息不能为空");
+//		}
 
         model.addAttribute("itemList", list);
         return "itemList";
@@ -83,19 +91,27 @@ public class ItemController {
 
     }
 
-    // 提交修改页面 入参 为Items对象
-    @RequestMapping(value = "/updateItem.action")
-    public ModelAndView updateItem(Items items) {
+    //提交修改页面 入参  为 Items对象
+    @RequestMapping(value = "/updateitem.action")
+//	public ModelAndView updateitem(Items items){
+    public String updateitem(QueryVo vo,MultipartFile pictureFile) throws Exception{
 
-        // 修改
-        itemService.updayeItemsById(items);
+        //保存图片到
+        String name = UUID.randomUUID().toString().replaceAll("-", "");
+        //jpg
+        String ext = FilenameUtils.getExtension(pictureFile.getOriginalFilename());
 
-        ModelAndView mav = new ModelAndView();
-        // 数据
-        mav.setViewName("success");
-        // return "redirect:/item/itemlist.action";  重定向
-        // return "forward:/item/itemlist.action";  转发
-        return mav;
+        pictureFile.transferTo(new File("E:\\upload\\" + name + "." + ext));
+
+        vo.getItems().setPic(name + "." + ext);
+        //修改
+        itemService.updayeItemsById(vo.getItems());
+
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("success");
+        return "redirect:/itemEdit.action?id=" + vo.getItems().getId();
+//		return "forward:/item/itemlist.action";
+
     }
 
     // 删除多个

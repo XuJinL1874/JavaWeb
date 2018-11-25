@@ -36,4 +36,10 @@
     <!-- SpringMVC的异常处理器 -->
     <bean class="cn.mastc.springmvc.exception.CustomExceptionResolver"/>
 
+    <!-- 上传图片配置实现类 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 上传图片的大小 B 5M 1*1024*1024*5-->
+        <property name="maxUploadSize" value="50000000"/>
+    </bean>
+
 </beans>
