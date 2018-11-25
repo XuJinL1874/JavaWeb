@@ -1,5 +1,7 @@
 package cn.mastc.springmvc.pojo;
 
+import java.util.List;
+
 public class QueryVo {
 
 	
@@ -7,6 +9,16 @@ public class QueryVo {
 	private Items items;
 
 	Integer[] ids;
+
+	private List<Items> itemsList;
+
+	public List<Items> getItemsList() {
+		return itemsList;
+	}
+
+	public void setItemsList(List<Items> itemsList) {
+		this.itemsList = itemsList;
+	}
 
 	public Integer[] getIds() {
 		return ids;

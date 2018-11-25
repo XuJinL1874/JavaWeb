@@ -33,4 +33,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- SpringMVC的异常处理器 -->
+    <bean class="cn.mastc.springmvc.exception.CustomExceptionResolver"/>
+
 </beans>
