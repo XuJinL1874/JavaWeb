@@ -42,4 +42,19 @@
         <property name="maxUploadSize" value="50000000"/>
     </bean>
 
+    <!-- SpringMVC的拦截器 -->
+    <mvc:interceptors>
+        <!-- 多个拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 自定义拦截器的类 -->
+            <bean class="cn.mastc.springmvc.interceptor.interceptor1"/>
+        </mvc:interceptor>
+        <!--<mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            &lt;!&ndash; 自定义拦截器的类 &ndash;&gt;
+            <bean class="cn.mastc.springmvc.interceptor.interceptor2"/>
+        </mvc:interceptor>-->
+    </mvc:interceptors>
+
 </beans>

@@ -7,8 +7,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -133,6 +135,26 @@ public class ItemController {
         // 数据
         mav.setViewName("success");
         return mav;
+    }
+
+    // json数据交互
+    @RequestMapping(value = "/json.action")
+    public @ResponseBody Items json(@RequestBody Items items) {
+        // System.out.println(items);
+        return items;
+    }
+
+
+    // 去登陆页面
+    @RequestMapping(value = "/login.action",method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login.action", method = RequestMethod.POST)
+    public String login(String username, HttpSession httpSession) {
+        httpSession.setAttribute("USER_SESSION", username);
+        return "redirect:/item/itemlist.action";
     }
 
 }
