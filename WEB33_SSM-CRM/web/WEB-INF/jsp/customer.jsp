@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="mastc" uri="http://mastc.cn/common/"%>
+<%@ taglib prefix="itheima" uri="http://itcast.cn/common/"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -210,7 +210,7 @@
 			<!-- /.row -->
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form class="form-inline" action="${pageContext.request.contextPath }/customer/list.action" method="get">
+					<form class="form-inline" action="${pageContext.request.contextPath }/customer/list.action" method="post">
 						<div class="form-group">
 							<label for="customerName">客户名称</label> 
 							<input type="text" class="form-control" id="customerName" value="${custName }" name="custName">
@@ -283,7 +283,7 @@
 							</tbody>
 						</table>
 						<div class="col-md-12 text-right">
-							<mastc:page url="${pageContext.request.contextPath }/customer/list.action" />
+							<itheima:page url="${pageContext.request.contextPath }/customer/list.action" />
 						</div>
 						<!-- /.panel-body -->
 					</div>
@@ -411,7 +411,7 @@
 				type:"get",
 				url:"<%=basePath%>customer/edit.action",
 				data:{"id":id},
-				success:function(data) {
+				success:function(data) {  
 					$("#edit_cust_id").val(data.cust_id);
 					$("#edit_customerName").val(data.cust_name);
 					$("#edit_customerFrom").val(data.cust_source)

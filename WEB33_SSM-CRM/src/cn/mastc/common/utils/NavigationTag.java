@@ -1,12 +1,11 @@
 package cn.mastc.common.utils;
 
-import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * 显示格式 上一页 1 2 3 4 5 下一页
@@ -36,9 +35,8 @@ public class NavigationTag extends TagSupport {
         JspWriter writer = pageContext.getOut();
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         Page page = (Page)request.getAttribute(bean); 
-        if (page == null) {
+        if (page == null) 
             return SKIP_BODY;
-        }
         url = resolveUrl(url, pageContext);
         try {
         	//计算总页数

@@ -8,22 +8,22 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <!-- 配置Controller扫描 -->
-    <context:component-scan base-package="cn.mastc.crm.controller"/>
+    <context:component-scan base-package="cn.mastc.crm.controller" />
 
-    <!-- 三大组件 -->
     <!-- 配置注解驱动 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven />
+
+    <!-- 对静态资源放行  -->
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 前缀 -->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/jsp/" />
         <!-- 后缀 -->
-        <property name="suffix" value=".jsp"/>
+        <property name="suffix" value=".jsp" />
     </bean>
-
-    <!-- 对静态资源进行放行 -->
-    <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/js/**" location="/js/"/>
-    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
 
 </beans>

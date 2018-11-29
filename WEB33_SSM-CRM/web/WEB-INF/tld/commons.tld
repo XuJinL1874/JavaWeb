@@ -6,7 +6,7 @@
 	<tlib-version>2.0</tlib-version>
 	<jsp-version>1.2</jsp-version>
 	<short-name>common</short-name>
-	<uri>http://mastc.cn/common/</uri>
+	<uri>http://itcast.cn/common/</uri>
 	<display-name>Common Tag</display-name>
 	<description>Common Tag library</description>
 
