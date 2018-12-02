@@ -27,7 +27,7 @@ public class CustomerController {
 
 
         @Autowired
-        private BaseDictService baseDictService;
+        private  BaseDictService baseDictService;
         @Autowired
         private CustomerService customerService;
 
