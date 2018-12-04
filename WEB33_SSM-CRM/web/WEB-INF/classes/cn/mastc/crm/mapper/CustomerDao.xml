@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 		//通过ID查询客户 -->
 <!-- 	public Customer selectCustomerById(Integer id); -->
 	<select id="selectCustomerById" parameterType="Integer"
-		resultType="Customer">
+		resultType="Customer" >
 		select * from customer
 		<where>
 			cust_id = #{id}
