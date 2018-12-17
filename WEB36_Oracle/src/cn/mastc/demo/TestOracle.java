@@ -1,10 +1,12 @@
 package cn.mastc.demo;
 
+import oracle.jdbc.OracleCallableStatement;
 import oracle.jdbc.OracleTypes;
 import org.junit.Test;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -94,6 +96,45 @@ public class TestOracle {
             e.printStackTrace();
         }finally {
             JDBCUtils.release(conn, call, null);
+        }
+
+    }
+
+    /**
+     *  调用oracle中的对象包
+     */
+    @Test
+    public void testCursor(){
+        String sql = "{call mypackage.QUERYEMPLIST(?,?)}";
+
+        Connection conn = null;
+        CallableStatement call = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBCUtils.getConnection();
+            call = conn.prepareCall(sql);
+
+            //对于in参数，赋值
+            call.setInt(1,20);
+
+            //对于out参数，申明
+            call.registerOutParameter(2, OracleTypes.CURSOR);
+
+            //执行
+            call.execute();
+
+            //取出结果
+            rs = ((OracleCallableStatement)call).getCursor(2);
+            while(rs.next()){
+                //取出一个员工
+                String name = rs.getString("ename");
+                double sal = rs.getDouble("sal");
+                System.out.println(name+"\t"+sal);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            JDBCUtils.release(conn, call, rs);
         }
 
     }
