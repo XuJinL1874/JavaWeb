@@ -65,7 +65,7 @@ public class FirstLucene {
             document.add(fileSizeField);
             document.add(filePathField);
             document.add(fileContentField);
-            // 第四步：使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库。
+            //  第四步：使用indexwriter对象将document对象写入索引库，此过程进行索引创建。并将索引和document对象写入索引库。
             indexWriter.addDocument(document);
 
         }
