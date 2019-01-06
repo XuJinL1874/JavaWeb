@@ -15,7 +15,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="e3-manager-pojo" target="1.8" />
       <module name="e3-managerdao" target="1.8" />
       <module name="e3managerpojo" target="1.8" />
     </bytecodeTargetLevel>
