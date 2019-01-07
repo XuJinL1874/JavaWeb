@@ -18,10 +18,10 @@
     <url>http://www.example.com</url>
     <modules>
         <module>e3-manager-interface</module>
-        <module>e3-manager-pojo</module>
         <module>e3-manager-dao</module>
         <module>e3-manager-service</module>
         <module>e3-manager-web</module>
+        <module>e3-manager-pojo</module>
     </modules>
 
     <properties>

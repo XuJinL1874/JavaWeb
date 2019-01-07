@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>e3-common</artifactId>
+    <packaging>jar</packaging>
 
     <name>e3-common</name>
     <!-- FIXME change it to the project's website -->
