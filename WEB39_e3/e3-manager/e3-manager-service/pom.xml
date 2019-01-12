@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>e3-manager-service</artifactId>
+    <packaging>war</packaging>
 
     <name>e3-manager-service</name>
     <!-- FIXME change it to the project's website -->
